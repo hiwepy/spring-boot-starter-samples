@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.8.RELEASE</version>
+		<relativePath></relativePath>
+	</parent>
+	
+	<artifactId>spring-boot-starter-samples</artifactId>
+	<packaging>pom</packaging>
+	<name>Spring Boot Starter Samples</name>
+	<description>Spring Boot Starter Samples</description>
+	
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+	
+	<modules>
+		<module>spring-boot-simple-axis2</module>
+		<module>spring-boot-simple-casclient</module>
+		<module>spring-boot-simple-cxf</module>
+		<module>spring-boot-simple-disruptor</module>
+		<module>spring-boot-simple-druid</module>
+		<module>spring-boot-simple-ehcache3</module>
+		<module>spring-boot-simple-flyway</module>
+		<module>spring-boot-simple-kaptcha</module>
+		<module>spring-boot-simple-log4j2</module>
+		<module>spring-boot-simple-pf4j</module>
+		<module>spring-boot-simple-rocketmq</module>
+		<module>spring-boot-simple-swagger2</module>
+	</modules>
+
+</project>
