@@ -1,11 +1,13 @@
 package org.apache.rocketmq.spring.boot.setup;
 
+import org.apache.rocketmq.spring.boot.annotation.RocketmqPushRule;
 import org.apache.rocketmq.spring.boot.event.RocketmqEvent;
 import org.apache.rocketmq.spring.boot.handler.EventHandler;
 import org.apache.rocketmq.spring.boot.handler.chain.HandlerChain;
 import org.springframework.stereotype.Component;
 
 @Component("smsHandler")
+@RocketmqPushRule("/Topic-DC-Input/TagB-Input/**")
 public class RocketmqDataSmsHandler implements EventHandler<RocketmqEvent> {
 
 	@Override

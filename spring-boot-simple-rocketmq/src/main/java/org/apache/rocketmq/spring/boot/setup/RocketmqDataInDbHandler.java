@@ -1,5 +1,6 @@
 package org.apache.rocketmq.spring.boot.setup;
 
+import org.apache.rocketmq.spring.boot.annotation.RocketmqPushRule;
 import org.apache.rocketmq.spring.boot.event.RocketmqEvent;
 import org.apache.rocketmq.spring.boot.handler.EventHandler;
 import org.apache.rocketmq.spring.boot.handler.chain.HandlerChain;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component("inDbHandler")
+@RocketmqPushRule("/Topic-DC-Input/TagA-Input/**") 
 public class RocketmqDataInDbHandler implements EventHandler<RocketmqEvent> {
 
 	@Override
