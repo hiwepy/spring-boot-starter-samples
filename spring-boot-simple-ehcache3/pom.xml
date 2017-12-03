@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-extend-samples</artifactId>
-		<version>1.5.8-SNAPSHOT</version>
+		<artifactId>spring-boot-starter-samples</artifactId>
+		<version>1.5.9-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>spring-boot-simple-ehcache3</artifactId>
 	<name>Spring Boot Ehcache3 Sample</name>
 	<description>Spring Boot Ehcache3 Sample</description>
-	
+
 	<dependencies>
 
 		<!-- Compile -->
@@ -34,12 +34,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-pf4j</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>

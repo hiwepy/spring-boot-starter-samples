@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.github.vindell</groupId>
 		<artifactId>spring-boot-extend-samples</artifactId>
-		<version>1.5.8-SNAPSHOT</version>
+		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>spring-boot-simple-mybatis</artifactId>

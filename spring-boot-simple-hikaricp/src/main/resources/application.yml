@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring: 
+  messages: 
+    basename: /i18n/message
+  profiles: 
+    active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:example.db
+    #username: 
+   # password: 
+     
+logging: 
+  config: classpath:log4j2.xml
+    

@@ -2,23 +2,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.8.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 		<relativePath></relativePath>
 	</parent>
-	
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>aliyun-public</id>
+			<name>Aliyun Public</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<groupId>com.github.vindell</groupId>
 	<artifactId>spring-boot-starter-samples</artifactId>
+	<version>1.5.9-SNAPSHOT</version>
+
 	<packaging>pom</packaging>
 	<name>Spring Boot Starter Samples</name>
 	<description>Spring Boot Starter Samples</description>
-	
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-	
+
 	<modules>
 		<module>spring-boot-simple-axis2</module>
 		<module>spring-boot-simple-casclient</module>
@@ -27,11 +67,1792 @@
 		<module>spring-boot-simple-druid</module>
 		<module>spring-boot-simple-ehcache3</module>
 		<module>spring-boot-simple-flyway</module>
+		<module>spring-boot-simple-hikaricp</module>
 		<module>spring-boot-simple-kaptcha</module>
 		<module>spring-boot-simple-log4j2</module>
 		<module>spring-boot-simple-pf4j</module>
 		<module>spring-boot-simple-rocketmq</module>
 		<module>spring-boot-simple-swagger2</module>
 	</modules>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<!-- Dependency versions -->
+		<activation.version>1.1.1</activation.version>
+		<axiom.version>1.2.18</axiom.version>
+		<axis.version>1.4</axis.version>
+		<axis-schema.version>1.3</axis-schema.version>
+		<axis-wsdl4j.version>1.5.1</axis-wsdl4j.version>
+		<axis2.version>1.7.6</axis2.version>
+		<axis2-api.version>1.4.1</axis2-api.version>
+		<buji-pac4j.version>3.0.0</buji-pac4j.version>
+		<bcprov.version>1.58</bcprov.version>
+		<commons-attributes.version>2.1</commons-attributes.version>
+		<commons-attributes-api.version>2.2</commons-attributes-api.version>
+		<commons-attributes-compiler.version>2.2</commons-attributes-compiler.version>
+		<commons-attributes-plugin.version>2.2</commons-attributes-plugin.version>
+		<commons-beanutils.version>1.9.3</commons-beanutils.version>
+		<commons-chain.version>1.2</commons-chain.version>
+		<commons-codec.version>1.11</commons-codec.version>
+		<commons-collections.version>3.2.2</commons-collections.version>
+		<commons-compiler.version>3.0.7</commons-compiler.version>
+		<commons-configuration.version>1.10</commons-configuration.version>
+		<commons-daemon.version>1.0.15</commons-daemon.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<commons-dbutils.version>1.7</commons-dbutils.version>
+		<commons-digester.version>2.1</commons-digester.version>
+		<commons-discovery.version>0.5</commons-discovery.version>
+		<commons-fileupload.version>1.3.3</commons-fileupload.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<commons-io.version>2.5</commons-io.version>
+		<commons-jxpath.version>1.3</commons-jxpath.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-logging.version>1.2</commons-logging.version>
+		<commons-math.version>2.2</commons-math.version>
+		<commons-net.version>3.6</commons-net.version>
+		<commons-pool.version>1.6</commons-pool.version>
+		<commons-validator.version>1.6</commons-validator.version>
+
+		<commons-compress.version>1.15</commons-compress.version>
+		<commons-collections4.version>4.1</commons-collections4.version>
+		<commons-configuration2.version>2.2</commons-configuration2.version>
+		<commons-crypto.version>1.0.0</commons-crypto.version>
+		<commons-csv.version>1.5</commons-csv.version>
+		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+		<commons-digester3.version>3.2</commons-digester3.version>
+		<commons-email.version>1.4</commons-email.version>
+		<commons-exec.version>1.3</commons-exec.version>
+		<commons-jexl.version>2.1.1</commons-jexl.version>
+		<commons-jexl3.version>3.1</commons-jexl3.version>
+		<commons-imaging.version>1.0-R1534292</commons-imaging.version>
+		<commons-lang3.version>3.6</commons-lang3.version>
+		<commons-math3.version>3.6.1</commons-math3.version>
+		<commons-pool2.version>2.4.3</commons-pool2.version>
+		<commons-proxy.version>1.0</commons-proxy.version>
+		<commons-text.version>1.1</commons-text.version>
+		<commons-vfs2.version>2.2</commons-vfs2.version>
+		<cxf.version>3.2.1</cxf.version>
+		<cas.version>5.1.3</cas.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<dom4j2.version>2.1.0</dom4j2.version>
+		<druid.version>1.1.5</druid.version>
+		<dropwizard-metrics.version>3.1.5</dropwizard-metrics.version>
+		<disruptor.version>3.3.7</disruptor.version>
+		<ehcache3.version>3.4.0</ehcache3.version>
+		<fastjson.version>1.2.38</fastjson.version>
+		<flyway.version>4.2.0</flyway.version>
+		<guava.version>23.4-jre</guava.version>
+		<grizzly.version>2.4.2</grizzly.version>
+		<httpcomponents.version>4.5.1</httpcomponents.version>
+		<httpcomponents-client.version>4.5.3</httpcomponents-client.version>
+		<httpcomponents-asyncclient.version>4.1.3</httpcomponents-asyncclient.version>
+		<httpcomponents-core.version>4.4.8</httpcomponents-core.version>
+		<httpcomponents-mime.version>4.5.3</httpcomponents-mime.version>
+		<hikaricp.version>2.7.4</hikaricp.version>
+		<java-jwt.version>3.3.0</java-jwt.version>
+		<jjwt.version>0.7.0</jjwt.version>
+		<jsoup.version>1.11.1</jsoup.version>
+		<kaptcha.version>2.3.2</kaptcha.version>
+		<kettle.version>4.1.2-GA</kettle.version>
+		<mybatis.version>3.4.5</mybatis.version>
+		<mybatis-spring.version>1.3.1</mybatis-spring.version>
+		<mybatis-migrations.version>3.3.1</mybatis-migrations.version>
+		<mybatis-typehandlers-jsr310.version>1.0.2</mybatis-typehandlers-jsr310.version>
+		<mybatis-typehandlers-extra.version>1.0.0</mybatis-typehandlers-extra.version>
+		<mybatis-ehcache.version>1.1.0</mybatis-ehcache.version>
+		<mybatis-hazelcast.version>1.1.1</mybatis-hazelcast.version>
+		<mybatis-ignite.version>1.0.6</mybatis-ignite.version>
+		<mybatis-memcached.version>1.0.0</mybatis-memcached.version>
+		<mybatis-oscache.version>1.0.2</mybatis-oscache.version>
+		<mybatis-redis.version>1.0.0-beta2</mybatis-redis.version>
+		<mybatis-freemarker.version>1.1.2</mybatis-freemarker.version>
+		<mybatis-velocity.version>1.3</mybatis-velocity.version>
+		<mybatis-generator.version>1.3.5</mybatis-generator.version>
+		<mysql.version>6.0.6</mysql.version>
+		<mysql-connector.version>5.1.39</mysql-connector.version>
+		<mina.version>2.0.16</mina.version>
+		<neethi.version>3.1.0</neethi.version>
+		<netty.version>4.1.17.Final</netty.version>
+		<log4j2.version>2.9.1</log4j2.version>
+		<oracle-10g-driver.version>10.2.0.5</oracle-10g-driver.version>
+		<oracle-11g-driver.version>11.2.0.4</oracle-11g-driver.version>
+		<oracle-12c-driver.version>12.1.0.2</oracle-12c-driver.version>
+		<oltu.version>1.0.2</oltu.version>
+		<pac4j.version>2.1.0</pac4j.version>
+		<ro.pf4j.version>1.3.0</ro.pf4j.version>
+		<ro.pf4j-update.version>0.4.0</ro.pf4j-update.version>
+		<ro.pf4j-spring.version>0.3.2</ro.pf4j-spring.version>
+		<rocketmq.version>4.1.0-incubating</rocketmq.version>
+
+		<spring-security.version>4.2.3.RELEASE</spring-security.version>
+		<spring-security-extensions.version>1.0.2.RELEASE</spring-security-extensions.version>
+		<spring-security-oauth.version>2.2.0.RELEASE</spring-security-oauth.version>
+	
+		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+		<thymeleaf-extras-springsecurity4.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity4.version>
+		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+		<thymeleaf-extras-conditionalcomments.version>2.1.2.RELEASE</thymeleaf-extras-conditionalcomments.version>
+		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
+		<thymeleaf-extras-java8time.version>3.0.1.RELEASE</thymeleaf-extras-java8time.version>
+		<woodstox-asl.version>4.0.0</woodstox-asl.version>
+		<wsdl4j.version>1.6.3</wsdl4j.version>
+		<xmlschema-core.version>2.0.2</xmlschema-core.version>
+		<xfire.version>1.2.6</xfire.version>
+		<!-- Plugin versions -->
+		<appassembler-maven-plugin.version>2.0.0</appassembler-maven-plugin.version>
+		<cxf-corbatools-maven-plugin.version>3.2.1</cxf-corbatools-maven-plugin.version>
+		<docker-maven-plugin.version>0.4.13</docker-maven-plugin.version>
+		<mybatis-generator-maven-plugin.version>1.3.5</mybatis-generator-maven-plugin.version>
+		<maven-notice-plugin.version>0.0.2</maven-notice-plugin.version>
+		<flyway-maven-plugin.version>4.2.0</flyway-maven-plugin.version>
+		<!-- Third Party Spring Boot Starter Dependency versions -->
+		<spring-boot-mybatis-starter.version>1.3.1</spring-boot-mybatis-starter.version>
+		<spring-boot-cxf-starter.version>3.2.1</spring-boot-cxf-starter.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Third Party -->
+
+			<!-- The JavaBeans(TM) Activation Framework is used by the JavaMail(TM) 
+				API to manage MIME data -->
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>${activation.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.ws.commons.axiom</groupId>
+				<artifactId>axiom-api</artifactId>
+				<version>${axiom.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.commons.axiom</groupId>
+				<artifactId>axiom-impl</artifactId>
+				<version>${axiom.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.neethi -->
+			<!-- Apache Neethi该组件为Axis2提供了非完整的WS-Policy实现，允许 Axis2用户操作和组合策略文档。 是Axis2用于创建策略文档的运行时表示形式、以及对策略文档执行规范化、合并和求交操作的工具。 
+				WS-Policy 提供了指定Web服务的可能配置以及执行定义的安全性和身份验证的一种方式。 -->
+			<dependency>
+				<groupId>org.apache.neethi</groupId>
+				<artifactId>neethi</artifactId>
+				<version>${neethi.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.codehaus.woodstox -->
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>stax2-api</artifactId>
+				<version>${woodstox-asl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>woodstox-core-asl</artifactId>
+				<version>${woodstox-asl.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/javax.xml.stream/stax-api -->
+			<dependency>
+				<groupId>javax.xml.stream</groupId>
+				<artifactId>stax-api</artifactId>
+				<version>1.0-2</version>
+			</dependency>
+			<dependency>
+				<groupId>wsdl4j</groupId>
+				<artifactId>wsdl4j</artifactId>
+				<version>${wsdl4j.version}</version>
+			</dependency>
+
+			<!-- Axis : http://mvnrepository.com/artifact/org.apache.axis -->
+			<dependency>
+				<groupId>axis</groupId>
+				<artifactId>axis-schema</artifactId>
+				<version>${axis-schema.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>axis</groupId>
+				<artifactId>axis-wsdl4j</artifactId>
+				<version>${axis-wsdl4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis</groupId>
+				<artifactId>axis</artifactId>
+				<version>${axis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis</groupId>
+				<artifactId>axis-ant</artifactId>
+				<version>${axis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis</groupId>
+				<artifactId>axis-jaxrpc</artifactId>
+				<version>${axis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis</groupId>
+				<artifactId>axis-saaj</artifactId>
+				<version>${axis.version}</version>
+			</dependency>
+
+
+
+			<!-- https://mvnrepository.com/artifact/io.buji/buji-pac4j -->
+			<dependency>
+				<groupId>io.buji</groupId>
+				<artifactId>buji-pac4j</artifactId>
+				<version>${buji-pac4j.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.bouncycastle -->
+
+			<!-- The Bouncy Castle Crypto package is a Java implementation of cryptographic 
+				algorithms. This jar contains JCE provider and lightweight API for the Bouncy 
+				Castle Cryptography APIs for JDK 1.5 to JDK 1.8. -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bcprov.version}</version>
+			</dependency>
+			<!-- The Bouncy Castle Crypto package is a Java implementation of cryptographic 
+				algorithms. This jar contains JCE provider and lightweight API for the Bouncy 
+				Castle Cryptography APIs for JDK 1.5 to JDK 1.8. Note: this package includes 
+				the NTRU encryption algorithms. -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-ext-jdk15on</artifactId>
+				<version>${bcprov.version}</version>
+			</dependency>
+			<!-- The Bouncy Castle Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP, 
+				and certificate generation. This jar contains APIs for JDK 1.5 to JDK 1.8. 
+				The APIs can be used in conjunction with a JCE/JCA provider such as the one 
+				provided with the Bouncy Castle Cryptography APIs. -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpkix-jdk15on</artifactId>
+				<version>${bcprov.version}</version>
+			</dependency>
+			<!-- The Bouncy Castle Java API for handling the OpenPGP protocol. This 
+				jar contains the OpenPGP API for JDK 1.5 to JDK 1.8. The APIs can be used 
+				in conjunction with a JCE/JCA provider such as the one provided with the 
+				Bouncy Castle Cryptography APIs. -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpg-jdk15on</artifactId>
+				<version>${bcprov.version}</version>
+			</dependency>
+			<!-- The Bouncy Castle Java S/MIME APIs for handling S/MIME protocols. 
+				This jar contains S/MIME APIs for JDK 1.5 to JDK 1.8. The APIs can be used 
+				in conjunction with a JCE/JCA provider such as the one provided with the 
+				Bouncy Castle Cryptography APIs. The JavaMail API and the Java activation 
+				framework will also be needed. -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcmail-jdk15on</artifactId>
+				<version>${bcprov.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/commons-attributes -->
+
+			<!-- Commons Attributes -->
+			<dependency>
+				<groupId>commons-attributes</groupId>
+				<artifactId>commons-attributes</artifactId>
+				<version>${commons-attributes.version}</version>
+			</dependency>
+			<!-- A precompiler for java that enables the use of attributes as seen 
+				in C#. -->
+			<dependency>
+				<groupId>commons-attributes</groupId>
+				<artifactId>commons-attributes-api</artifactId>
+				<version>${commons-attributes-api.version}</version>
+			</dependency>
+			<!-- An Ant task that will precompile Java source. -->
+			<dependency>
+				<groupId>commons-attributes</groupId>
+				<artifactId>commons-attributes-compiler</artifactId>
+				<version>${commons-attributes.version}</version>
+			</dependency>
+			<!-- Commons Attributes Plugin -->
+			<dependency>
+				<groupId>commons-attributes</groupId>
+				<artifactId>commons-attributes-plugin</artifactId>
+				<version>${commons-attributes-plugin.version}</version>
+			</dependency>
+			<!-- Apache Commons BeanUtils provides an easy-to-use but flexible wrapper 
+				around reflection and introspection. -->
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<!-- An implementation of the GoF Chain of Responsibility pattern -->
+			<dependency>
+				<groupId>commons-chain</groupId>
+				<artifactId>commons-chain</artifactId>
+				<version>${commons-chain.version}</version>
+			</dependency>
+			<!-- The Apache Commons Codec package contains simple encoder and decoders 
+				for various formats such as Base64 and Hexadecimal. In addition to these 
+				widely used encoders and decoders, the codec package also maintains a collection 
+				of phonetic encoding utilities. -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+			<!-- Types that extend and augment the Java Collections Framework. -->
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons-collections.version}</version>
+			</dependency>
+			<!-- The "commons-compiler" API, including the "IExpressionEvaluator", 
+				"IScriptEvaluator", "IClassBodyEvaluator" and "ISimpleCompiler" interfaces. -->
+			<dependency>
+				<groupId>org.codehaus.janino</groupId>
+				<artifactId>commons-compiler</artifactId>
+				<version>${commons-compiler.version}</version>
+			</dependency>
+			<!-- Tools to assist in the reading of configuration/preferences files 
+				in various formats. -->
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${commons-configuration.version}</version>
+			</dependency>
+			<!-- Apache Commons Daemon software provides an alternative invocation 
+				mechanism for unix-daemon-like Java code. 创建类似unix守护线程的java代码，可以安全地执行一些后台操作，线程不被某个应用程序控制，而是由操作系统控制类似windows的service， 
+				可以设置一个服务依赖于另一个服务，一个服务关闭前必须先执行另一个服务。 -->
+			<dependency>
+				<groupId>commons-daemon</groupId>
+				<artifactId>commons-daemon</artifactId>
+				<version>${commons-daemon.version}</version>
+			</dependency>
+			<!-- The Apache Commons DbUtils package is a set of Java utility classes 
+				for easing JDBC development. -->
+			<dependency>
+				<groupId>commons-dbutils</groupId>
+				<artifactId>commons-dbutils</artifactId>
+				<version>${commons-dbutils.version}</version>
+			</dependency>
+			<!-- Digester 是一个基于规则的XML文档解析库,主要用于XML到Java对象的映射。Struts就是用Digester来处理XML配置文件的。而且Digester还包含一个写好的RSS解析器。 -->
+			<dependency>
+				<groupId>commons-digester</groupId>
+				<artifactId>commons-digester</artifactId>
+				<version>${commons-digester.version}</version>
+			</dependency>
+			<!-- The Apache Commons Discovery component is about discovering, or finding, 
+				implementations for pluggable interfaces. -->
+			<dependency>
+				<groupId>commons-discovery</groupId>
+				<artifactId>commons-discovery</artifactId>
+				<version>${commons-discovery.version}</version>
+			</dependency>
+			<!-- The Apache Commons FileUpload component provides a simple yet flexible 
+				means of adding support for multipart file upload functionality to servlets 
+				and web applications. -->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload.version}</version>
+			</dependency>
+			<!-- The HttpClient component supports the client-side of RFC 1945 (HTTP/1.0) 
+				and RFC 2616 (HTTP/1.1) , several related specifications (RFC 2109 (Cookies) 
+				, RFC 2617 (HTTP Authentication) , etc.), and provides a framework by which 
+				new request types (methods) or HTTP extensions can be created easily. -->
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons-httpclient.version}</version>
+			</dependency>
+			<!-- Commons-IO contains utility classes, stream implementations, file 
+				filters, and endian classes. -->
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			<!-- A Java-based implementation of XPath 1.0 that, in addition to XML 
+				processing, can inspect/modify Java object graphs (the library's explicit 
+				purpose) and even mixed Java/XML structures. -->
+			<dependency>
+				<groupId>commons-jxpath</groupId>
+				<artifactId>commons-jxpath</artifactId>
+				<version>${commons-jxpath.version}</version>
+			</dependency>
+			<!-- Commons项目中用来处理Java基本对象方法的工具类包， 可以简化很多平时经常要用到的写法， 例如判断字符串是否为空等等 -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<!-- Apache Commons Net library contains a collection of network utilities 
+				and protocol implementations. Supported protocols include: Echo, Finger, 
+				FTP, NNTP, NTP, POP3(S), SMTP(S), Telnet, Whois -->
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons-net.version}</version>
+			</dependency>
+			<!-- Commons Object Pooling Library -->
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${commons-pool.version}</version>
+			</dependency>
+			<!-- Apache Commons Validator provides the building blocks for both client 
+				side validation and server side data validation. It may be used standalone 
+				or with a framework like Struts. Commons-validator提供了一个简单的，可扩展的框架来在一个XML文件中定义校验器(校验方法)和校验规则。支持校验规则的和错误消息的国际化。 -->
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons-validator.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.apache.commons -->
+
+			<!-- Apache Commons Compress software defines an API for working with 
+				compression and archive formats. These include: bzip2, gzip, pack200, lzma, 
+				xz, Snappy, traditional Unix Compress, DEFLATE, LZ4, Brotli and ar, cpio, 
+				jar, tar, zip, dump, 7z, arj. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>${commons-compress.version}</version>
+			</dependency>
+			<!-- The Apache Commons Collections package contains types that extend 
+				and augment the Java Collections Framework. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections4.version}</version>
+			</dependency>
+			<!-- Tools to assist in the reading of configuration/preferences files 
+				in various formats -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-configuration2</artifactId>
+				<version>${commons-configuration2.version}</version>
+			</dependency>
+			<!-- Apache Commons Crypto is a cryptographic library optimized with AES-NI 
+				(Advanced Encryption Standard New Instructions). -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-crypto</artifactId>
+				<version>${commons-crypto.version}</version>
+			</dependency>
+			<!-- The Apache Commons CSV library provides a simple interface for reading 
+				and writing CSV files of various types. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-csv</artifactId>
+				<version>${commons-csv.version}</version>
+			</dependency>
+			<!-- Apache Commons DBCP software implements Database Connection Pooling -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-dbcp2</artifactId>
+				<version>${commons-dbcp2.version}</version>
+			</dependency>
+			<!-- The Apache Commons Digester package lets you configure an XML to 
+				Java object mapping module which triggers certain actions called rules whenever 
+				a particular pattern of nested XML elements is recognized. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-digester3</artifactId>
+				<version>${commons-digester3.version}</version>
+			</dependency>
+			<!-- Apache Commons Email aims to provide an API for sending email. It 
+				is built on top of the JavaMail API, which it aims to simplify. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-email</artifactId>
+				<version>${commons-email.version}</version>
+			</dependency>
+			<!-- Apache Commons Exec 是 Apache 上的一个 Java 项目，提供一些常用的方法用来执行外部进程 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-exec</artifactId>
+				<version>${commons-exec.version}</version>
+			</dependency>
+			<!-- The Apache Commons JEXL library is an implementation of the JSTL 
+				Expression Language with extensions. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-jexl</artifactId>
+				<version>${commons-jexl.version}</version>
+			</dependency>
+			<!-- The Apache Commons JEXL library is an implementation of the JSTL 
+				Expression Language with extensions. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-jexl3</artifactId>
+				<version>${commons-jexl3.version}</version>
+			</dependency>
+			<!-- Commons Imaging (previously Sanselan) is a pure-Java image library. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-imaging</artifactId>
+				<version>${commons-imaging.version}</version>
+			</dependency>
+			<!-- Apache Commons Lang, a package of Java utility classes for the classes 
+				that are in java.lang's hierarchy, or are considered to be so standard as 
+				to justify existence in java.lang. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			<!-- The Apache Commons Math project is a library of lightweight, self-contained 
+				mathematics and statistics components addressing the most common practical 
+				problems not immediately available in the Java programming language or commons-lang. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math3</artifactId>
+				<version>${commons-math3.version}</version>
+			</dependency>
+			<!-- The Apache Commons Object Pooling Library. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>${commons-pool2.version}</version>
+			</dependency>
+			<!-- Java library for dynamic proxying -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-proxy</artifactId>
+				<version>${commons-proxy.version}</version>
+			</dependency>
+			<!-- Apache Commons Text is a library focused on algorithms working on 
+				strings. -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>${commons-text.version}</version>
+			</dependency>
+			<!--Apache Commons VFS is a Virtual File System library. VFS为访问各种不同的文件系统提供了单一的应用程序编程接口（API），大大的简化了应用程序本身代码的复杂度。 
+				目前VFS支持FTP、Local Files 、HTTP/HTTPS、SFTP、Temporary Files、Zip、Jar/Tar（uncompressed、tgz 
+				or tbz2）、gzip/bzip2、res、ram 所有这些文件系统中的文件被封装成了FileObject这个类，文件的读写操作都通过此类来完成。文件的路径采用了URL的方式。 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-vfs2</artifactId>
+				<version>${commons-vfs2.version}</version>
+			</dependency>
+
+
+
+			<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+			<dependency>
+				<groupId>org.dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j2.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/com.alibaba/druid -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<!-- ###################### Metrics 3.x ###################### -->
+
+			<dependency>
+				<groupId>io.dropwizard.metrics</groupId>
+				<artifactId>metrics-httpclient</artifactId>
+				<version>${dropwizard-metrics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ryantenney.metrics</groupId>
+				<artifactId>metrics-spring</artifactId>
+				<version>3.1.3</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/com.lmax/disruptor -->
+			<dependency>
+				<groupId>com.lmax</groupId>
+				<artifactId>disruptor</artifactId>
+				<version>${disruptor.version}</version>
+			</dependency>
+
+			<!-- Ehcache 3.x http://blog.csdn.net/liaodehong/article/details/51774403 
+				http://blog.csdn.net/liaodehong/article/details/51775491 -->
+
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache-clustered</artifactId>
+				<version>${ehcache3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache-transactions</artifactId>
+				<version>${ehcache3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>sizeof</artifactId>
+				<version>0.3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>jcache</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>${flyway.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.glassfish.grizzly -->
+
+			<!-- Grizzly： Grizzly是一种应用程序框架，专门解决编写成千上万用户访问服务器时候产生的各种问题。 使用JAVA NIO作为基础，并隐藏其编程的复杂性。容易使用的高性能的API。带来非阻塞socketd到协议处理层。利用高性能的缓冲和缓冲管理使用高性能的线程池。 -->
+
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-core</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-monitoring</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-extras</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-portunif</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+
+			<!-- grizzly-comet -->
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-comet</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-comet-server</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+
+			<!-- grizzly-http -->
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-all</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http2</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-client</artifactId>
+				<version>1.14</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-monitoring</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<!-- grizzly-http-server -->
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-server</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-server-multipart</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-server-monitoring</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<!-- grizzly-http-servlet -->
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-servlet</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-servlet-server</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-http-servlet-extras</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<!-- grizzly-websockets -->
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-websockets</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.grizzly</groupId>
+				<artifactId>grizzly-websockets-server</artifactId>
+				<version>${grizzly.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.apache.httpcomponents -->
+
+			<!-- httpasyncclient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpasyncclient</artifactId>
+				<version>${httpcomponents-asyncclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpasyncclient-osgi</artifactId>
+				<version>${httpcomponents-asyncclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpasyncclient-cache</artifactId>
+				<version>${httpcomponents-asyncclient.version}</version>
+			</dependency>
+			<!-- httpcore -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${httpcomponents-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore-ab</artifactId>
+				<version>${httpcomponents-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore-nio</artifactId>
+				<version>${httpcomponents-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore-osgi</artifactId>
+				<version>${httpcomponents-core.version}</version>
+			</dependency>
+			<!-- httpclient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpcomponents-client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient-win</artifactId>
+				<version>${httpcomponents-client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient-cache</artifactId>
+				<version>${httpcomponents-client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>fluent-hc</artifactId>
+				<version>${httpcomponents-client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient-osgi</artifactId>
+				<version>${httpcomponents-client.version}</version>
+			</dependency>
+			<!-- httpcomponents -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcomponents-core</artifactId>
+				<version>${httpcomponents.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcomponents-asyncclient</artifactId>
+				<version>${httpcomponents.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcomponents-client</artifactId>
+				<version>${httpcomponents.version}</version>
+			</dependency>
+			<!-- httpmime -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${httpcomponents-mime.version}</version>
+			</dependency>
+
+			<!-- jwt -->
+			<dependency>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>${java-jwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${jsoup.version}</version>
+			</dependency>
+
+			<!-- Kaptcha是一个基于SimpleCaptcha的验证码开源项目 http://chenzhou123520.iteye.com/blog/1987636 -->
+			<dependency>
+				<groupId>com.github.penggle</groupId>
+				<artifactId>kaptcha</artifactId>
+				<version>${kaptcha.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.mybatis -->
+
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis-spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-migrations</artifactId>
+				<version>${mybatis-migrations.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-typehandlers-jsr310</artifactId>
+				<version>${mybatis-typehandlers-jsr310.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-typehandlers-threeten-extra</artifactId>
+				<version>${mybatis-typehandlers-extra.version}</version>
+			</dependency>
+
+			<!-- mybatis caches -->
+			<dependency>
+				<groupId>org.mybatis.caches</groupId>
+				<artifactId>mybatis-ehcache</artifactId>
+				<version>${mybatis-ehcache.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.caches</groupId>
+				<artifactId>mybatis-hazelcast</artifactId>
+				<version>${mybatis-hazelcast.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.caches</groupId>
+				<artifactId>mybatis-ignite</artifactId>
+				<version>${mybatis-ignite.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.caches</groupId>
+				<artifactId>mybatis-memcached</artifactId>
+				<version>${mybatis-memcached.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.caches</groupId>
+				<artifactId>mybatis-oscache</artifactId>
+				<version>${mybatis-oscache.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.caches</groupId>
+				<artifactId>mybatis-redis</artifactId>
+				<version>${mybatis-redis.version}</version>
+			</dependency>
+			<!-- mybatis scripting -->
+			<dependency>
+				<groupId>org.mybatis.scripting</groupId>
+				<artifactId>mybatis-freemarker</artifactId>
+				<version>${mybatis-freemarker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.scripting</groupId>
+				<artifactId>mybatis-velocity</artifactId>
+				<version>${mybatis-velocity.version}</version>
+			</dependency>
+			<!-- mybatis generator -->
+			<dependency>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator</artifactId>
+				<version>${mybatis-generator.version}</version>
+				<type>pom</type>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.mina -->
+
+			<!-- Mina： Mina(Multipurpose Infrastructure for Network Applications) 
+				是 Apache 组织一个较新的项目， 它为开发高性能和高可用性的网络应用程序提供了非常便利的框架。当前发行的 Mina 版本2.04支持基于 Java 
+				NIO 技术的 TCP/UDP 应用程序开发、 串口通讯程序，Mina 所支持的功能也在进一步的扩展中。目前，正在使用 Mina的应用包括：Apache 
+				Directory Project、 AsyncWeb、AMQP（Advanced Message Queuing Protocol）、RED5 
+				Server（Macromedia Flash Media RTMP）、 ObjectRADIUS、 Openfire等等。 -->
+
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-core</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-http</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-statemachine</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-filter-compression</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-integration-beans</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-integration-jmx</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-integration-ognl</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-integration-spring</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-integration-xbean</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-transport-apr</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-transport-serial</artifactId>
+				<version>${mina.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-filter-ssl</artifactId>
+				<version>1.1.7</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/io.netty -->
+
+			<!-- Netty： Netty是一款异步的事件驱动的网络应用框架和工具，用于快速开发可维护的高性能、高扩展性协议服务器和客户端。 也就是说，Netty是一个NIO客户端/服务器框架，支持快速、简单地开发网络应用，如协议服务器和客户端。它极大简化了网络编程，如TCP和UDP套接字服务器。 -->
+
+			<!-- netty-all -->
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<!-- netty-core -->
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-common</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-handler</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-handler-proxy</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-buffer</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-build</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<!-- netty-tcnative -->
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-tcnative</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-tcnative-boringssl-static</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<!-- netty-resolver -->
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-resolver</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-resolver-dns</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<!-- netty-transport -->
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-transport</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-transport-udt</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-transport-sctp</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-transport-rxtx</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-transport-native-epoll</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<!-- netty-codec -->
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-dns</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-haproxy</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-http</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-http2</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-memcache</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-mqtt</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-redis</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-socks</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-smtp</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-stomp</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-xml</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-metrics-yammer</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-microbench</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-testsuite</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-testsuite-osgi</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.pac4j -->
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-http</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-oauth</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-cas</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-saml</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-oidc</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-jwt</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-openid</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-ldap</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-sql</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-mongo</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/ro.fortsoft.pf4j -->
+			<dependency>
+				<groupId>ro.fortsoft.pf4j</groupId>
+				<artifactId>pf4j</artifactId>
+				<version>${ro.pf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ro.fortsoft.pf4j</groupId>
+				<artifactId>pf4j-update</artifactId>
+				<version>${ro.pf4j-update.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ro.fortsoft.pf4j</groupId>
+				<artifactId>pf4j-spring</artifactId>
+				<version>${ro.pf4j-spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- RocketMq -->
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-client</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-common</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-namesrv</artifactId>
+				<version>${rocketmq.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-filtersrv</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-broker</artifactId>
+				<version>${rocketmq.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-srvutil</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-store</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-remoting</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-openmessaging</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-filter</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-distribution</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-logappender</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-tools</artifactId>
+				<version>${rocketmq.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- Spring-Security -->
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-bom</artifactId>
+				<version>${spring-security.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-webflux</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-jwt</artifactId>
+				<version>1.0.8.RELEASE</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-rsa</artifactId>
+				<version>1.0.5.RELEASE</version>
+			</dependency>
+
+			<!-- Spring-Security-OAuth -->
+			<!-- http://mvnrepository.com/artifact/org.springframework.security.oauth -->
+
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth</artifactId>
+				<version>${spring-security-oauth.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+				<version>${spring-security-oauth.version}</version>
+			</dependency>
+
+			<!-- Spring-Security-Extensions -->
+			<!-- http://mvnrepository.com/artifact/org.springframework.security.extensions -->
+
+			<dependency>
+				<groupId>org.springframework.security.extensions</groupId>
+				<artifactId>spring-security-saml</artifactId>
+				<version>1.0.1.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security.extensions</groupId>
+				<artifactId>spring-security-saml2-core</artifactId>
+				<version>${spring-security-extensions.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security.extensions</groupId>
+				<artifactId>spring-security-saml-dsl</artifactId>
+				<version>1.0.0.M3</version>
+			</dependency>
+
+
+
+			<!-- ######################日志组件工具包###################### -->
+
+			<!-- 实现各个日志组件之间的桥接并最终输出到log4j2 ： 实现方案： 第一步：将日志系统全部无缝先切换到slf4j 1、去掉commons-logging（其实去不去都可以），使用jcl-over-slf4j将commons-logging的底层日志输出切换到slf4j 
+				2、使用jul-to-slf4j，将jul的日志输出切换到slf4j 3、使用slf4j-log4j12,将slf4j的日志输出切换到log4j 
+				第二步：使slf4j选择log4j2来作为底层日志输出 加入以下jar包： slf4j-api log4j -->
+
+			<!-- Jakarta Commons Logging (JCL) 提供的是一个日志 (Log) 接口 (interface) ，同时兼顾轻量级和不依赖于具体的日志实现工具 
+				。 它提供给中间件 / 日志工具开发者一个简单的日志操作抽象，允许程序开发人员使用不同的具体日志实现工具。用户被假定已熟悉某种日志实现工具的更高级别的细节。 
+				JCL 提供的接口，对其它一些日志工具，包括 Log4J, Avalon LogKit, and JDK 1.4 等，进行了简单的包装，此接口更接近于 
+				Log4J 和 LogKit 的实现。 -->
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
+			</dependency>
+
+			<!--Log4j 2 包含了基于LMAX 分离库的下一代的异步日志系统，在多线程环境下，异步日志系统比 Log4j 1.x 和Logback 
+				提高了10倍性能提升（吞吐量和延迟率 ） -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<!-- The Apache Log4j Implementation -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<!-- The Apache Log4j SLF4J API binding to Log4j 2 Core -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<!-- The Apache Log4j Commons Logging Adapter -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-jcl</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<!-- The Apache Log4j implementation of java.util.logging -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-jul</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<!-- The Apache Log4j support for web servlet containers -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-web</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+
+			<!-- The Apache Log4j Tag Library for Web Applications -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-taglib</artifactId>
+				<version>${log4j2.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<!-- The Apache Log4j streams to log event converters -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-iostreams</artifactId>
+				<version>${log4j2.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<!-- NoSQL appenders for Log4j. These include appenders to databases such 
+				as MongoDB, Apache CouchDB, and Apache Cassandra. -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-nosql</artifactId>
+				<version>${log4j2.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<!-- The Apache Log4j Flume Appender -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-flume-ng</artifactId>
+				<version>${log4j2.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<!-- ######################数据库驱动包###################### -->
+
+			<!-- Oracle JDBC Driver. ojdbc14 : Classes for use with JDK 1.4 and 1.5 
+				ojdbc5 : Classes for use with JDK 1.5. ojdbc6 : Classes for use with JDK 
+				1.6. ojdbc7 : Certified with JDK7 and JDK 8; It contains the JDBC driver 
+				classes except classes for NLS support in Oracle Object and Collection types. 
+				特别注意： 1、因为Oracle数据库版本或JDK版本不同，此处需要根据实际情况调整不同的数据库驱动 2、Oracle 12C JDBC 连接要求: 
+				(1)、需要jre 1.7 及以上版本 (2)、ojdbc jar包需要更换版本为ojdbc7 （http://10.71.19.153:8081/nexus/content/repositories/public/com/oracle/ojdbc7/12.1.0.2/ojdbc7-12.1.0.2.jar） 
+				(3)、连接字符串示例 原来写法 jdbc:oracle:thin:@10.71.19.171:1521:pdb1 需要变更为 jdbc:oracle:thin:@10.71.19.171:1521/pdb1 -->
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc14</artifactId>
+				<version>${oracle-10g-driver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc5</artifactId>
+				<version>${oracle-11g-driver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc6</artifactId>
+				<version>${oracle-11g-driver.version}</version>
+				<!-- <version>${oracle-12c-driver.version}</version> -->
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc7</artifactId>
+				<version>${oracle-12c-driver.version}</version>
+			</dependency>
+
+			<!-- Oauth2 -->
+			<dependency>
+				<groupId>org.apache.oltu.oauth2</groupId>
+				<artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
+				<version>${oltu.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.oltu.oauth2</groupId>
+				<artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
+				<version>${oltu.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>io.swagger</groupId>
+						<artifactId>swagger-annotations</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.swagger</groupId>
+						<artifactId>swagger-models</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-spring-web</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-bean-validators</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-data-rest</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>swagger-ui</artifactId>
+				<version>${swagger-ui.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-core</artifactId>
+				<version>${swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-integration</artifactId>
+				<version>${swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-parser-v2</artifactId>
+				<version>2.0.0-rc0</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-jaxrs2</artifactId>
+				<version>${swagger2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.ws.xmlschema</groupId>
+				<artifactId>xmlschema-core</artifactId>
+				<version>${xmlschema-core.version}</version>
+			</dependency>
+
+			<!-- http://mvnrepository.com/artifact/org.codehaus.xfire -->
+			<!-- XFire是新一代的Java Web服务引擎，XFire使得在JavaEE应用中发布Web服务变得轻而易举。 和其他Web服务引擎相比，XFire的配置非常简单，可以非常容易地和Spring集成，它使得Java开发人员终于 
+				可以获得和.Net开发人员一样的开发效率。 -->
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-all</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-core</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-aegis</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-annotations</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-java5</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-spring</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-xmlbeans</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-jaxb2</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-ws-security</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-jaxws</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.xfire</groupId>
+				<artifactId>xfire-jms</artifactId>
+				<version>${xfire.version}</version>
+			</dependency>
+
+
+			<!-- Spring Boot Extend Starters -->
+
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${spring-boot-mybatis-starter.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+				<version>${spring-boot-cxf-starter.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
+				<version>${spring-boot-cxf-starter.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- http://www.mojohaus.org/appassembler/appassembler-maven-plugin，http://blog.csdn.net/mn960mn/article/details/51554152 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>appassembler-maven-plugin</artifactId>
+					<version>${appassembler-maven-plugin.version}</version>
+				</plugin>
+				<!-- http://mvnrepository.com/artifact/org.apache.cxf/cxf-corbatools-maven-plugin -->
+				<plugin>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-corbatools-maven-plugin</artifactId>
+					<version>${cxf-corbatools-maven-plugin.version}</version>
+				</plugin>
+				<!-- https://github.com/spotify/docker-maven-plugin,http://blog.csdn.net/qq_22841811/article/details/67369530 -->
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<version>${docker-maven-plugin.version}</version>
+				</plugin>
+				<!-- http://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-maven-plugin -->
+				<plugin>
+					<groupId>org.mybatis.generator</groupId>
+					<artifactId>mybatis-generator-maven-plugin</artifactId>
+					<version>${mybatis-generator-maven-plugin.version}</version>
+				</plugin>
+				<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/maven-notice-plugin -->
+				<plugin>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>maven-notice-plugin</artifactId>
+					<version>${maven-notice-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.flywaydb</groupId>
+					<artifactId>flyway-maven-plugin</artifactId>
+					<version>${flyway-maven-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>

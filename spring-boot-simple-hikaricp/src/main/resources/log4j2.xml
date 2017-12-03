@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+
+	<Properties>
+		<!-- 配置日志文件输出目录 -->
+		<Property name="LOG_HOME">/logs</Property>
+		<!-- 日志输出格式 -->
+		<Property name="LOG_CONSOLE_LAYOUT">[Log4j2-dev][%p][%t] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%C:%M:%L] %m%n</Property>
+		<Property name="LOG_FILE_LAYOUT">[%level][%thread] [%date{yyyy-MM-dd HH:mm:ss.SSS}] [%class:%line]:%message%n</Property>
+		<!-- 日志文件主名称规则 -->
+		<Property name="LOG_FILE_NAME">${LOG_HOME}/simple.log</Property>
+		<Property name="JMXTRANS_LOG_FILE_NAME">${LOG_HOME}/jmxtrans.log</Property>
+		<!-- 日志文件备份名称规则 -->
+		<Property name="LOG_FILE_PATTERN">${LOG_HOME}/back/${date:yyyy-MM}/log4j-%d{yyyy-MM-dd}-%i.log.gz</Property>
+	</Properties>
+
+	<Appenders>
+		
+		<!-- 控制台日志输出配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LOG_CONSOLE_LAYOUT}" />
+		</Console>
+	
+		<!-- 日志文件输出配置：按天或者超过25MB分割 -->
+		<RollingRandomAccessFile name="ROLLING_FILE_LOG" fileName="${LOG_FILE_NAME}" filePattern="${LOG_FILE_PATTERN}" append="true">
+			<PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+			<Policies>
+				<OnStartupTriggeringPolicy/>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" /> <!-- 对应 filePattern维度，此处为天数 -->
+				<SizeBasedTriggeringPolicy size="25MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="30" /> <!-- 日志自动删除，最大个数 -->
+		</RollingRandomAccessFile>
+		<RollingRandomAccessFile name="JMXTRANS_ROLLING_FILE_LOG" fileName="${JMXTRANS_LOG_FILE_NAME}" filePattern="${LOG_FILE_PATTERN}" append="true">
+			<PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+			<Policies>
+				<OnStartupTriggeringPolicy/>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" /> <!-- 对应 filePattern维度，此处为天数 -->
+				<SizeBasedTriggeringPolicy size="25MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="30" /> <!-- 日志自动删除，最大个数 -->
+		</RollingRandomAccessFile>
+		
+		
+		
+	</Appenders>
+
+	<Loggers>
+		
+		<!-- ###############同步日志配置############### -->
+		
+		<!-- 
+			#Log4j输出级别的种类
+			#ERROR、WARN、INFO、DEBUG
+			#ERROR 为严重错误 主要是程序的错误
+			#WARN 为一般警告，比如session丢失
+			#INFO 为一般要显示的信息，比如登录登出
+			#DEBUG 为程序的调试信息
+		 -->
+		
+		<!-- 应用的日志级别 -->
+		<logger name="com.github.vindell" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>   
+        </logger>
+        <logger name="[Mybatis]com.github.vindell" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>   
+        </logger>
+        <logger name="noModule" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>   
+        </logger>
+		<logger name="access" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>   
+        </logger>
+        <!-- Spring框架日志配置 -->
+		<logger name="org.springframework" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+			<AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+        <!-- Struts2框架日志配置 -->
+		<logger name="org.apache.struts2" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+		<logger name="com.opensymphony.xwork2" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+		<!-- Mybatis框架日志配置 -->
+		<logger name="org.mybatis" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+        <logger name="org.apache.ibatis" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+		<logger name="org.apache.ibatis.jdbc.ScriptRunner" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+        
+        
+        <!-- JDBC日志配置 -->
+		<logger name="java.sql" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+		<logger name="java.sql.Connection" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+        <logger name="java.sql.Statement" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+		<logger name="java.sql.PreparedStatement" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+		<logger name="java.sql.ResultSet" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </logger>
+        
+        <!-- jmxtrans -->
+        <logger name="org.jmxtrans" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="JMXTRANS_ROLLING_FILE_LOG"/>  
+        </logger>
+        <logger name="com.github.vindell" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </logger>
+        <logger name="org.apache.rocketmq" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </logger>
+        <logger name="RocketmqClient" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </logger>
+        
+		<!-- 剩余其他的日志级别 -->  
+        <Root level="INFO" includeLocation="true">  
+            <AppenderRef ref="Console" />  
+            <AppenderRef ref="ROLLING_FILE_LOG"/>  
+        </Root>
+
+	</Loggers>
+</Configuration>
