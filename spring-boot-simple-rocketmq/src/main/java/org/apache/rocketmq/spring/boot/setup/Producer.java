@@ -37,7 +37,7 @@ public class Producer implements CommandLineRunner {
 		Message msg2 = new Message("Topic-DC-Output", // topic
 				"TagA-Output", // tag
 				"KKK", // key用于标识业务的唯一性； key 消息关键词，多个Key用KEY_SEPARATOR隔开（查询消息使用）
-				(new Date() + ": hi,RocketMQ(topic) I'm Spring zftal-boot-datay").getBytes()// body 二进制字节数组
+				(new Date() + ": hi,RocketMQ(topic) ").getBytes()// body 二进制字节数组
 		);
 		
 		SendResult result2 = rocketmqTemplate.send(msg2);
