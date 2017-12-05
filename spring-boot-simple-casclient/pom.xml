@@ -6,13 +6,13 @@
 	<parent>
 		<!-- Your own application should inherit from spring-boot-starter-parent -->
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-extend-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>spring-boot-simple-casclient</artifactId>
-	<name>Spring Boot CasClient Sample</name>
-	<description>Spring Boot CasClient Sample</description>
+	<name>Spring Boot CasClient Simple</name>
+	<description>Spring Boot CasClient Simple</description>
 	
 	<dependencies>
 
@@ -28,10 +28,6 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.github.vindell</groupId>
-			<artifactId>spring-boot-starter-casclient</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -40,6 +36,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>spring-boot-starter-casclient</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>

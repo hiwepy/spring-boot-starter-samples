@@ -51,13 +51,14 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
 	<groupId>com.github.vindell</groupId>
-	<artifactId>spring-boot-starter-samples</artifactId>
+	<artifactId>spring-boot-starter-simples</artifactId>
 	<version>1.5.9-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
-	<name>Spring Boot Starter Samples</name>
-	<description>Spring Boot Starter Samples</description>
+	<name>Spring Boot Starter Simples</name>
+	<description>Spring Boot Starter Simples</description>
 
 	<modules>
 		<module>spring-boot-simple-axis2</module>
@@ -73,6 +74,7 @@
 		<module>spring-boot-simple-pf4j</module>
 		<module>spring-boot-simple-rocketmq</module>
 		<module>spring-boot-simple-swagger2</module>
+		<module>spring-boot-simple-websocket</module>
 	</modules>
 
 	<properties>
@@ -183,11 +185,18 @@
 		<ro.pf4j-update.version>0.4.0</ro.pf4j-update.version>
 		<ro.pf4j-spring.version>0.3.2</ro.pf4j-spring.version>
 		<rocketmq.version>4.1.0-incubating</rocketmq.version>
-
+		
 		<spring-security.version>4.2.3.RELEASE</spring-security.version>
 		<spring-security-extensions.version>1.0.2.RELEASE</spring-security-extensions.version>
 		<spring-security-oauth.version>2.2.0.RELEASE</spring-security-oauth.version>
-	
+		<springfox.version>2.7.0</springfox.version>
+		<swagger2.version>2.0.0-rc2</swagger2.version>
+		<swagger-codegen.version>2.2.3</swagger-codegen.version>
+		<swagger-core-version>2.0.0-rc2</swagger-core-version>
+		<swagger-parser-version>1.0.32</swagger-parser-version>
+		<swagger-jaxrs.version>1.5.16</swagger-jaxrs.version>
+		<swagger-ui.version>3.2.0</swagger-ui.version>
+		
 		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
 		<thymeleaf-extras-springsecurity4.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity4.version>
 		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>

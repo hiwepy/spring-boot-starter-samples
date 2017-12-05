@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-extend-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>spring-boot-simple-kaptcha</artifactId>
-	<name>Spring Boot Kaptcha Sample</name>
-	<description>Spring Boot Kaptcha Sample</description>
+	<name>Spring Boot Kaptcha Simple</name>
+	<description>Spring Boot Kaptcha Simple</description>
 	
 	<dependencies>
 	
@@ -38,6 +38,7 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-kaptcha</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>

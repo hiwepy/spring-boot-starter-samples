@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-extend-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>spring-boot-simple-disruptor</artifactId>
-	<name>Spring Boot Disruptor Sample</name>
-	<description>Spring Boot Disruptor Sample</description>
+	<name>Spring Boot Disruptor Simple</name>
+	<description>Spring Boot Disruptor Simple</description>
 	
 	<dependencies>
 		
@@ -38,8 +38,9 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-disruptor</artifactId>
+			<version>${project.version}</version>
 		</dependency>
-
+		
 	</dependencies>
 
 	<build>

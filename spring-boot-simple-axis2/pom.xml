@@ -5,13 +5,13 @@
 	
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-starter-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-sample-axis2</artifactId>
-	<name>Spring Boot Axis2 Sample</name>
-	<description>Spring Boot Axis2 Sample</description>
+	<artifactId>spring-boot-simple-axis2</artifactId>
+	<name>Spring Boot Axis2 Simple</name>
+	<description>Spring Boot Axis2 Simple</description>
 	
 	<dependencies>
 

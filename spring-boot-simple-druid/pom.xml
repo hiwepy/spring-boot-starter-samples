@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-starter-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>spring-boot-simple-druid</artifactId>
-	<name>Spring Boot Druid Sample</name>
-	<description>Spring Boot Druid Sample</description>
+	<name>Spring Boot Druid Simple</name>
+	<description>Spring Boot Druid Simple</description>
 
 	<dependencies>
 

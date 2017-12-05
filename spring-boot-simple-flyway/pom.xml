@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-extend-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>spring-boot-simple-mybatis</artifactId>
-	<name>Spring Boot Mybatis Sample</name>
-	<description>Spring Boot Mybatis Sample</description>
+	<name>Spring Boot Mybatis Simple</name>
+	<description>Spring Boot Mybatis Simple</description>
 	
 	<dependencies>
 
@@ -39,10 +39,12 @@
 		    <artifactId>spring-boot-starter-mybatis</artifactId>
 		    <version>3.2.2</version>
 		</dependency>
-		<dependency>
+		
+		<!-- <dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-mybatis</artifactId>
-		</dependency>
+			<version>${project.version}</version>
+		</dependency> -->
 
 		<!-- Spring Boot Mybatis 依赖 -->
 		<dependency>

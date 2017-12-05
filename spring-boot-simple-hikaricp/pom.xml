@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-starter-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>spring-boot-simple-hikaricp</artifactId>
-	<name>Spring Boot HikariCP Sample</name>
-	<description>Spring Boot HikariCP Sample</description>
+	<name>Spring Boot HikariCP Simple</name>
+	<description>Spring Boot HikariCP Simple</description>
 
 	<dependencies>
 

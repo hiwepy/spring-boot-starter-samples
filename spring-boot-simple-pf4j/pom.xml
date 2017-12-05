@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-extend-samples</artifactId>
+		<artifactId>spring-boot-starter-simples</artifactId>
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>spring-boot-simple-pf4j</artifactId>
-	<name>Spring Boot Pf4j Sample</name>
-	<description>Spring Boot Pf4j Sample</description>
+	<name>Spring Boot Pf4j Simple</name>
+	<description>Spring Boot Pf4j Simple</description>
 	
 	<dependencies>
 
@@ -38,6 +38,7 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-pf4j</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		
 		<dependency>
