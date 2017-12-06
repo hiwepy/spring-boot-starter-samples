@@ -185,7 +185,7 @@
 		<ro.pf4j-update.version>0.4.0</ro.pf4j-update.version>
 		<ro.pf4j-spring.version>0.3.2</ro.pf4j-spring.version>
 		<rocketmq.version>4.1.0-incubating</rocketmq.version>
-		
+		<sharding-jdbc.version>2.0.0.M3</sharding-jdbc.version>
 		<spring-security.version>4.2.3.RELEASE</spring-security.version>
 		<spring-security-extensions.version>1.0.2.RELEASE</spring-security-extensions.version>
 		<spring-security-oauth.version>2.2.0.RELEASE</spring-security-oauth.version>
@@ -1464,7 +1464,59 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-
+		
+			<!-- http://mvnrepository.com/artifact/io.shardingjdbc -->
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-core</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-core-spring-namespace</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-transaction</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-transaction-storage</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-transaction-async-job</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-spring-namespace</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-orchestration</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-orchestration-spring-namespace</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
+			    <version>${sharding-jdbc.version}</version>
+			</dependency>
+			
 			<!-- Spring-Security -->
 
 			<dependency>
