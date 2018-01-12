@@ -75,6 +75,7 @@
 		<module>spring-boot-simple-rocketmq</module>
 		<module>spring-boot-simple-swagger2</module>
 		<module>spring-boot-simple-websocket</module>
+		<module>spring-boot-simple-sharding-jdbc</module>
 	</modules>
 
 	<properties>
@@ -1495,12 +1496,7 @@
 			    <groupId>io.shardingjdbc</groupId>
 			    <artifactId>sharding-jdbc-spring-namespace</artifactId>
 			    <version>${sharding-jdbc.version}</version>
-			</dependency>
-			<dependency>
-			    <groupId>io.shardingjdbc</groupId>
-			    <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-			    <version>${sharding-jdbc.version}</version>
-			</dependency>
+			</dependency> 
 			<dependency>
 			    <groupId>io.shardingjdbc</groupId>
 			    <artifactId>sharding-jdbc-orchestration</artifactId>
@@ -1510,11 +1506,23 @@
 			    <groupId>io.shardingjdbc</groupId>
 			    <artifactId>sharding-jdbc-orchestration-spring-namespace</artifactId>
 			    <version>${sharding-jdbc.version}</version>
+			</dependency> 
+			
+			<!-- https://mvnrepository.com/artifact/io.shardingjdbc -->
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+			    <version>${spring-boot-sharding-jdbc-starter.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.shardingjdbc</groupId>
+			    <artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
+			    <version>${spring-boot-sharding-jdbc-starter.version}</version>
 			</dependency>
 			<dependency>
 			    <groupId>io.shardingjdbc</groupId>
 			    <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
-			    <version>${sharding-jdbc.version}</version>
+			    <version>${spring-boot-sharding-jdbc-starter.version}</version>
 			</dependency>
 			
 			<!-- Spring-Security -->
