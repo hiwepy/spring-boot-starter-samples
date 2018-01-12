@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>spring-boot-simple-druid</artifactId>
+	<artifactId>spring-boot-sample-druid</artifactId>
 	<name>Spring Boot Druid Simple</name>
 	<description>Spring Boot Druid Simple</description>
 

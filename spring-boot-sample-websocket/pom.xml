@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-websocket</artifactId>
+	<artifactId>spring-boot-sample-websocket</artifactId>
 	<name>Spring Boot Websocket Simple</name>
 	<description>Spring Boot Websocket Simple</description>
 	

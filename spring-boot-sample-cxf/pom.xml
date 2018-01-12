@@ -10,7 +10,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-cxf</artifactId>
+	<artifactId>spring-boot-sample-cxf</artifactId>
 	<name>Spring Boot Cxf Simple</name>
 	<description>Spring Boot Cxf Simple</description>
 	

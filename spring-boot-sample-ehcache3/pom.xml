@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>spring-boot-simple-ehcache3</artifactId>
+	<artifactId>spring-boot-sample-ehcache3</artifactId>
 	<name>Spring Boot Ehcache3 Simple</name>
 	<description>Spring Boot Ehcache3 Simple</description>
 

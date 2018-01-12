@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-disruptor</artifactId>
+	<artifactId>spring-boot-sample-disruptor</artifactId>
 	<name>Spring Boot Disruptor Simple</name>
 	<description>Spring Boot Disruptor Simple</description>
 	

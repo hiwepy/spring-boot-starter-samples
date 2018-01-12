@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-kaptcha</artifactId>
+	<artifactId>spring-boot-sample-kaptcha</artifactId>
 	<name>Spring Boot Kaptcha Simple</name>
 	<description>Spring Boot Kaptcha Simple</description>
 	

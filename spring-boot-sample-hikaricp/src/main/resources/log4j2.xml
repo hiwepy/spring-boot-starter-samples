@@ -8,7 +8,7 @@
 		<Property name="LOG_CONSOLE_LAYOUT">[Log4j2-dev][%p][%t] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%C:%M:%L] %m%n</Property>
 		<Property name="LOG_FILE_LAYOUT">[%level][%thread] [%date{yyyy-MM-dd HH:mm:ss.SSS}] [%class:%line]:%message%n</Property>
 		<!-- 日志文件主名称规则 -->
-		<Property name="LOG_FILE_NAME">${LOG_HOME}/simple.log</Property>
+		<Property name="LOG_FILE_NAME">${LOG_HOME}/sample.log</Property>
 		<Property name="JMXTRANS_LOG_FILE_NAME">${LOG_HOME}/jmxtrans.log</Property>
 		<!-- 日志文件备份名称规则 -->
 		<Property name="LOG_FILE_PATTERN">${LOG_HOME}/back/${date:yyyy-MM}/log4j-%d{yyyy-MM-dd}-%i.log.gz</Property>

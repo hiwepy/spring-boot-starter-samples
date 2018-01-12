@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-rocketmq</artifactId>
+	<artifactId>spring-boot-sample-rocketmq</artifactId>
 	<name>Spring Boot Rocketmq Simple</name>
 	<description>Spring Boot Rocketmq Simple</description>
 	

@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-swagger2</artifactId>
+	<artifactId>spring-boot-sample-swagger2</artifactId>
 	<name>Spring Boot Swagger2 Simple</name>
 	<description>Spring Boot Swagger2 Simple</description>
 	

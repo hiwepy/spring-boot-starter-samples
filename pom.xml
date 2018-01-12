@@ -61,21 +61,21 @@
 	<description>Spring Boot Starter Simples</description>
 
 	<modules>
-		<module>spring-boot-simple-axis2</module>
-		<module>spring-boot-simple-casclient</module>
-		<module>spring-boot-simple-cxf</module>
-		<module>spring-boot-simple-disruptor</module>
-		<module>spring-boot-simple-druid</module>
-		<module>spring-boot-simple-ehcache3</module>
-		<module>spring-boot-simple-flyway</module>
-		<module>spring-boot-simple-hikaricp</module>
-		<module>spring-boot-simple-kaptcha</module>
-		<module>spring-boot-simple-log4j2</module>
-		<module>spring-boot-simple-pf4j</module>
-		<module>spring-boot-simple-rocketmq</module>
-		<module>spring-boot-simple-swagger2</module>
-		<module>spring-boot-simple-websocket</module>
-		<module>spring-boot-simple-sharding-jdbc</module>
+		<module>spring-boot-sample-axis2</module>
+		<module>spring-boot-sample-casclient</module>
+		<module>spring-boot-sample-cxf</module>
+		<module>spring-boot-sample-disruptor</module>
+		<module>spring-boot-sample-druid</module>
+		<module>spring-boot-sample-ehcache3</module>
+		<module>spring-boot-sample-flyway</module>
+		<module>spring-boot-sample-hikaricp</module>
+		<module>spring-boot-sample-kaptcha</module>
+		<module>spring-boot-sample-log4j2</module>
+		<module>spring-boot-sample-pf4j</module>
+		<module>spring-boot-sample-rocketmq</module>
+		<module>spring-boot-sample-swagger2</module>
+		<module>spring-boot-sample-websocket</module>
+		<module>spring-boot-sample-sharding-jdbc</module>
 	</modules>
 
 	<properties>
@@ -405,7 +405,7 @@
 				<artifactId>commons-chain</artifactId>
 				<version>${commons-chain.version}</version>
 			</dependency>
-			<!-- The Apache Commons Codec package contains simple encoder and decoders 
+			<!-- The Apache Commons Codec package contains sample encoder and decoders 
 				for various formats such as Base64 and Hexadecimal. In addition to these 
 				widely used encoders and decoders, the codec package also maintains a collection 
 				of phonetic encoding utilities. -->
@@ -462,7 +462,7 @@
 				<artifactId>commons-discovery</artifactId>
 				<version>${commons-discovery.version}</version>
 			</dependency>
-			<!-- The Apache Commons FileUpload component provides a simple yet flexible 
+			<!-- The Apache Commons FileUpload component provides a sample yet flexible 
 				means of adding support for multipart file upload functionality to servlets 
 				and web applications. -->
 			<dependency>
@@ -555,7 +555,7 @@
 				<artifactId>commons-crypto</artifactId>
 				<version>${commons-crypto.version}</version>
 			</dependency>
-			<!-- The Apache Commons CSV library provides a simple interface for reading 
+			<!-- The Apache Commons CSV library provides a sample interface for reading 
 				and writing CSV files of various types. -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>

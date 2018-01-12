@@ -7,7 +7,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>spring-boot-simple-hikaricp</artifactId>
+	<artifactId>spring-boot-sample-hikaricp</artifactId>
 	<name>Spring Boot HikariCP Simple</name>
 	<description>Spring Boot HikariCP Simple</description>
 

@@ -9,7 +9,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-axis2</artifactId>
+	<artifactId>spring-boot-sample-axis2</artifactId>
 	<name>Spring Boot Axis2 Simple</name>
 	<description>Spring Boot Axis2 Simple</description>
 	

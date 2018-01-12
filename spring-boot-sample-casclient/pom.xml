@@ -10,7 +10,7 @@
 		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-simple-casclient</artifactId>
+	<artifactId>spring-boot-sample-casclient</artifactId>
 	<name>Spring Boot CasClient Simple</name>
 	<description>Spring Boot CasClient Simple</description>
 	
