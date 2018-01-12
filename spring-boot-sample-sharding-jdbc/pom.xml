@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.vindell</groupId>
+		<artifactId>spring-boot-starter-samples</artifactId>
+		<version>1.5.9-SNAPSHOT</version>
+	</parent>
+	<artifactId>spring-boot-simple-sharding-jdbc</artifactId>
+	<dependencies>
+
+		<!-- http://mvnrepository.com/artifact/io.shardingjdbc -->
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-transaction</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-transaction-storage</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-orchestration</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>
