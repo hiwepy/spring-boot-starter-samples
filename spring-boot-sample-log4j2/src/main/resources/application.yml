@@ -18,11 +18,11 @@ spring:
       
 #数据源配置      
   datasource:
-    name: zftal_demo
+    name: db_demo
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@10.71.19.135:1521:orcl
-    username: zftal_demo
-    password: zftal_demo
+    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+    username: db_demo
+    password: db_demo
     type: com.zaxxer.hikari.HikariDataSource
     # HiKariCP的数据源配置：
     hikari: 

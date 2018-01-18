@@ -59,9 +59,9 @@
 		<!--
 			日志名称前缀：该值会影响log4j对mybatis输出日志；
 			增加了该前缀后，日志的名称将会变成类似以下结构：
-			[Mybatis]com.zfsoft.dao.daointerface.xxx.xxx
+			[Mybatis]net.jeebiz.dao.daointerface.xxx.xxx
 			故如果需要输出SQL日志，配置需改为：			
-			log4j.logger.[Mybatis]com.zfsoft = DEBUG
+			log4j.logger.[Mybatis]net.jeebiz = DEBUG
 		 -->
 		<setting name="logPrefix" value="[Mybatis]"/>
 		<!-- <setting name="logImpl" value="LOG4J"/> -->
@@ -74,12 +74,12 @@
         <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
-        <typeAlias alias="PairModel" type="com.zfsoft.basemodel.PairModel" />
-        <typeAlias alias="BaseMap" type="com.zfsoft.basemodel.BaseMap" />
+        <typeAlias alias="PairModel" type="net.jeebiz.basemodel.PairModel" />
+        <typeAlias alias="BaseMap" type="net.jeebiz.basemodel.BaseMap" />
 	</typeAliases>
 	<!-- 此处配置需要特别注意：拦截器执行的顺序是配置顺序的倒叙执行 -->
     <plugins>
-		<plugin interceptor="com.zfsoft.orm.mybatis.interceptor.PartitionPaginationInterceptor">
+		<plugin interceptor="net.jeebiz.orm.mybatis.interceptor.PartitionPaginationInterceptor">
 			<property name="dialect" value="oracle"/>
 			<property name="methodRegexp" value=".*getPaged*.*"/><!-- 分页拦截,配置以*getPaged*开始的Id -->
 		</plugin>

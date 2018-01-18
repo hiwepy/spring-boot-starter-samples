@@ -18,11 +18,11 @@ spring:
 
 #数据源配置      
   datasource:
-    name: zftal_demo
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@10.71.19.135:1521:orcl
-    username: zftal_demo
-    password: zftal_demo
+    name: db_demo
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+    username: db_demo
+    password: db_demo
     type: com.zaxxer.hikari.HikariDataSource
     # HiKariCP的数据源配置：
     hikari: 
@@ -37,10 +37,10 @@ mybatis:
   config-location: classpath:/conf/mybatis/sqlMapConfig.xml
   type-aliases-package: org.mybatis.spring.boot.dao.entities
   #自动扫描Dao的根目录，多个使用,分割
-  base-package: com.zfsoft.**.dao
+  base-package: net.jeebiz.**.dao
   #Mapper.xml匹配规则
   mapper-locations: 
-  - classpath*:com/zfsoft/**/dao/**/sqlmap/*.xml
+  - classpath*:org/mybatis/**/dao/**/sqlmap/*.xml
   
 #日志级别
 logging: 

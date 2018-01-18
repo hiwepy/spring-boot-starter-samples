@@ -23,21 +23,25 @@
 		<dependency>
 			<groupId>io.shardingjdbc</groupId>
 			<artifactId>sharding-jdbc-transaction-storage</artifactId>
+			<version>${sharding-jdbc.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.shardingjdbc</groupId>
 			<artifactId>sharding-jdbc-orchestration</artifactId>
+			<version>${sharding-jdbc.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>io.shardingjdbc</groupId>
 			<artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+			<version>${spring-boot-sharding-jdbc-starter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.shardingjdbc</groupId>
 			<artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
+			<version>${spring-boot-sharding-jdbc-starter.version}</version>
 		</dependency>
 
 	</dependencies>
