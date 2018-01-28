@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.github.vindell</groupId>
 		<artifactId>spring-boot-starter-samples</artifactId>
-		<version>1.5.9-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>spring-boot-sample-druid</artifactId>
