@@ -16,16 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class DisruptorApplication implements ApplicationRunner, CommandLineRunner {
 
 	public static void main(String[] args) throws Exception {
-
-		SpringApplication app = new SpringApplication(DisruptorApplication.class);
-
-		// app.setAdditionalProfiles("development");
-
-		app.run(args);
-
-		// SpringApplication.run(DataxApplication.class, args);
-		// logger.warn("My Spring Boot Application Started");
-
+		SpringApplication.run(DisruptorApplication.class, args);
 	}
 
 	@Override
