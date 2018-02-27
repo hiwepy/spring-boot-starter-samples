@@ -142,7 +142,7 @@
 		<dropwizard-metrics.version>3.1.5</dropwizard-metrics.version>
 		<disruptor.version>3.3.7</disruptor.version>
 		<ehcache3.version>3.4.0</ehcache3.version>
-		<fastjson.version>1.2.38</fastjson.version>
+		<fastjson.version>1.2.46</fastjson.version>
 		<flyway.version>4.2.0</flyway.version>
 		<guava.version>23.4-jre</guava.version>
 		<grizzly.version>2.4.2</grizzly.version>
