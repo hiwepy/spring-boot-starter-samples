@@ -1,0 +1,143 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.github.vindell</groupId>
+    <artifactId>pf4j2-plugin</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>pf4j2-plugin-impl1</artifactId>
+  
+  <properties>
+
+		<plugin.id>${project.artifactId}</plugin.id>
+		<plugin.description>认证插件实现1</plugin.description>
+		<plugin.class>pf4j2.plugin.impl.AuthcPluginImpl1</plugin.class>
+		<plugin.version>${project.version}</plugin.version>
+		<plugin.provider>${project.groupId}</plugin.provider>
+		<plugin.dependencies />
+
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Commons项目中用来处理IO的一些工具类包 -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<!-- Commons项目中用来处理Java基本对象方法的工具类包， 可以简化很多平时经常要用到的写法， 例如判断字符串是否为空等等 -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>pf4j2-plugin-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 编译插件：编译主代码至主输出目录 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- 设置源文件编码方式 -->
+				<configuration>
+					<annotationProcessors>
+						<annotationProcessor>ro.fortsoft.pf4j.processor.ExtensionAnnotationProcessor</annotationProcessor>
+					</annotationProcessors>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<!-- 源代码编译版本 -->
+					<source>1.7</source>
+					<!-- 目标平台编译版本 -->
+					<target>1.7</target>
+					<!-- 字符集编码 -->
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<!-- -->
+					<maxmem>512M</maxmem>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>unzip jar file</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<unzip
+									src="target/${project.artifactId}-${project.version}.${project.packaging}"
+									dest="target/plugin-classes" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<descriptors>
+						<descriptor>
+							src/main/assembly/assembly.xml
+						</descriptor>
+					</descriptors>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- jar包生成插件 ：创建项目jar包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<skipIfEmpty>false</skipIfEmpty>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+						<manifestEntries>
+							<Plugin-Id>${plugin.id}</Plugin-Id>
+							<Plugin-Description>${plugin.description}</Plugin-Description>
+							<Plugin-Class>${plugin.class}</Plugin-Class>
+							<Plugin-Version>${plugin.version}</Plugin-Version>
+							<Plugin-Provider>${plugin.provider}</Plugin-Provider>
+							<Plugin-Dependencies>${plugin.dependencies}</Plugin-Dependencies>
+							<Plugin-Requires>*</Plugin-Requires>
+							<!-- <Plugin-License>http://www.apache.org/licenses/LICENSE-2.0</Plugin-License> -->
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

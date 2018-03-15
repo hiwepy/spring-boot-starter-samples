@@ -76,6 +76,7 @@
 		<module>spring-boot-sample-swagger2</module>
 		<module>spring-boot-sample-websocket</module>
 		<module>spring-boot-sample-sharding-jdbc</module>
+		<module>spring-boot-sample-pf4j2</module>
 	</modules>
 
 	<properties>
