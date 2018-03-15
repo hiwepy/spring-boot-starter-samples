@@ -1,18 +1,16 @@
 /**
  * <p>Coyright (R) 2014 正方软件股份有限公司。<p>
  */
-package pf4j2.plugin.test;
+package pf4j.plugin.test;
 
 import java.util.List;
 
-import org.pf4j.DefaultPluginManager;
-import org.pf4j.PluginManager;
-import org.pf4j.PluginWrapper;
-import org.pf4j.RuntimeMode;
-import org.pf4j.spring.boot.ext.Pf4jJarPluginManager;
-
-import pf4j2.plugin.api.AuthcExtensionPoint;
-import pf4j2.plugin.api.annotation.ExtensionMapping;
+import pf4j.plugin.api.AuthcExtensionPoint;
+import pf4j.plugin.api.annotation.ExtensionMapping;
+import ro.fortsoft.pf4j.JarPluginManager;
+import ro.fortsoft.pf4j.PluginManager;
+import ro.fortsoft.pf4j.PluginWrapper;
+import ro.fortsoft.pf4j.RuntimeMode;
 
 public class AuthcPluginTest {
 
@@ -28,12 +26,12 @@ public class AuthcPluginTest {
 		/**
 		 * 创建PluginManager对象,此处根据生产环境选择合适的实现，或者自定义实现
 		 */
-		PluginManager pluginManager = new DefaultPluginManager();
-		// PluginManager pluginManager = new Pf4jPluginManager();
-		// PluginManager pluginManager = new SpringPluginManager();
+		// PluginManager pluginManager = new DefaultPluginManager(new File("E:/root/").toPath());
+		PluginManager pluginManager = new JarPluginManager();
 		// PluginManager pluginManager = new Pf4jJarPluginManager();
 		// PluginManager pluginManager = new Pf4jJarPluginWhitSpringManager();
-
+		// PluginManager pluginManager = new Pf4jPluginManager();
+	
 		/**
 		 * 加载插件到JVM
 		 */
