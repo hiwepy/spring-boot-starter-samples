@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-pf4j</artifactId>
-	<name>Spring Boot Pf4j Simple</name>
-	<description>Spring Boot Pf4j Simple</description>
+	<name>Spring Boot Pf4j Sample</name>
+	<description>Spring Boot Pf4j Sample</description>
 	
 	<dependencies>
 

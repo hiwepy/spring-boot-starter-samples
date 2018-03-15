@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-rocketmq</artifactId>
-	<name>Spring Boot Rocketmq Simple</name>
-	<description>Spring Boot Rocketmq Simple</description>
+	<name>Spring Boot Rocketmq Sample</name>
+	<description>Spring Boot Rocketmq Sample</description>
 	
 	<dependencies>
 

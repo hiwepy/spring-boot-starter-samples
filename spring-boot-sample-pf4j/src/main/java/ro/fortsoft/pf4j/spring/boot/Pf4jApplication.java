@@ -40,11 +40,12 @@ public class Pf4jApplication implements ApplicationRunner, CommandLineRunner {
 //			System.setProperty("pf4j.pluginsDir", "plugins");
 //		}
 		
-		
-//		final PluginManager pluginManager = new DefaultPluginManager(new File("E:/root/").toPath());
-		//final PluginManager pluginManager = new JarPluginManager();
+		// PluginManager pluginManager = new DefaultPluginManager(new File("E:/root/").toPath());
 		PluginManager pluginManager = new JarPluginManager();
-
+		// PluginManager pluginManager = new Pf4jJarPluginManager();
+		// PluginManager pluginManager = new Pf4jJarPluginWhitSpringManager();
+		// PluginManager pluginManager = new Pf4jPluginManager();
+		
 	    pluginManager.loadPlugins();
 
 	    pluginManager.startPlugins();

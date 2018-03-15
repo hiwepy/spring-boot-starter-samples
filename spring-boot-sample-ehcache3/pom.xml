@@ -8,8 +8,8 @@
 	</parent>
 
 	<artifactId>spring-boot-sample-ehcache3</artifactId>
-	<name>Spring Boot Ehcache3 Simple</name>
-	<description>Spring Boot Ehcache3 Simple</description>
+	<name>Spring Boot Ehcache3 Sample</name>
+	<description>Spring Boot Ehcache3 Sample</description>
 
 	<dependencies>
 

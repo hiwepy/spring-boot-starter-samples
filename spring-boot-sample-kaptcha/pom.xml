@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-kaptcha</artifactId>
-	<name>Spring Boot Kaptcha Simple</name>
-	<description>Spring Boot Kaptcha Simple</description>
+	<name>Spring Boot Kaptcha Sample</name>
+	<description>Spring Boot Kaptcha Sample</description>
 	
 	<dependencies>
 	

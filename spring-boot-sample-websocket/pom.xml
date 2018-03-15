@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-websocket</artifactId>
-	<name>Spring Boot Websocket Simple</name>
-	<description>Spring Boot Websocket Simple</description>
+	<name>Spring Boot Websocket Sample</name>
+	<description>Spring Boot Websocket Sample</description>
 	
 	<dependencies>
 

@@ -1,0 +1,32 @@
+# 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+#   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
+#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
+
+pf4j: 
+  enabled: true
+  mode: deployment
+  plugins-dir: plugins
+  
+server:
+  port: 8085
+  
+info:
+  app:
+    name: "@project.name@" #从pom.xml中获取
+    description: "@project.description@"
+    version: "@project.version@"
+    spring-boot-version: "@project.parent.version@"
+
+spring: 
+  output:
+    ansi:
+      enabled: always
+  messages:
+    basename: /i18n/message
+  profiles: 
+    active: dev
+     
+#日志级别
+logging: 
+  config: classpath:log4j2.xml
+    

@@ -11,8 +11,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-cxf</artifactId>
-	<name>Spring Boot Cxf Simple</name>
-	<description>Spring Boot Cxf Simple</description>
+	<name>Spring Boot Cxf Sample</name>
+	<description>Spring Boot Cxf Sample</description>
 	
 	<dependencies>
 

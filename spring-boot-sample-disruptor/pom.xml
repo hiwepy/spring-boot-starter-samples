@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-disruptor</artifactId>
-	<name>Spring Boot Disruptor Simple</name>
-	<description>Spring Boot Disruptor Simple</description>
+	<name>Spring Boot Disruptor Sample</name>
+	<description>Spring Boot Disruptor Sample</description>
 	
 	<dependencies>
 		

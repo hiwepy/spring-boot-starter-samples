@@ -11,8 +11,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-casclient</artifactId>
-	<name>Spring Boot CasClient Simple</name>
-	<description>Spring Boot CasClient Simple</description>
+	<name>Spring Boot CasClient Sample</name>
+	<description>Spring Boot CasClient Sample</description>
 	
 	<dependencies>
 

@@ -8,8 +8,8 @@
 	</parent>
 
 	<artifactId>spring-boot-sample-hikaricp</artifactId>
-	<name>Spring Boot HikariCP Simple</name>
-	<description>Spring Boot HikariCP Simple</description>
+	<name>Spring Boot HikariCP Sample</name>
+	<description>Spring Boot HikariCP Sample</description>
 
 	<dependencies>
 

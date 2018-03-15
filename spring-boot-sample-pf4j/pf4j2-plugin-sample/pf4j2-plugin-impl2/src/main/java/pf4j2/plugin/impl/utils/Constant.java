@@ -13,16 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package pf4j2.plugin.api;
+package pf4j2.plugin.impl.utils;
 
-import org.pf4j.ExtensionPoint;
-
-/*
- * 根接口，继承ExtensionPoint
- * 将该项目打成jar包，放到plugin项目的lib文件夹下，然后构建配置路径
- */
-public interface ApiExtensionPoint extends ExtensionPoint {
-
-	String token();
+public class Constant {
+	
+	/** 用于关联业务的ID */
+	public static final String STANDARD_EXTENSION_ID = "Extension-ID-impl2";
 	
 }

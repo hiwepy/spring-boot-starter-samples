@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-log4j2</artifactId>
-	<name>Spring Boot Log4j2 Simple</name>
-	<description>Spring Boot Log4j2 Simple</description>
+	<name>Spring Boot Log4j2 Sample</name>
+	<description>Spring Boot Log4j2 Sample</description>
 	
 	<dependencies>
 

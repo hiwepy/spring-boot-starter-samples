@@ -10,8 +10,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-axis2</artifactId>
-	<name>Spring Boot Axis2 Simple</name>
-	<description>Spring Boot Axis2 Simple</description>
+	<name>Spring Boot Axis2 Sample</name>
+	<description>Spring Boot Axis2 Sample</description>
 	
 	<dependencies>
 

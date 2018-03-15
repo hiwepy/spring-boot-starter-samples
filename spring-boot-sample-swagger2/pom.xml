@@ -8,8 +8,8 @@
 	</parent>
 	
 	<artifactId>spring-boot-sample-swagger2</artifactId>
-	<name>Spring Boot Swagger2 Simple</name>
-	<description>Spring Boot Swagger2 Simple</description>
+	<name>Spring Boot Swagger2 Sample</name>
+	<description>Spring Boot Swagger2 Sample</description>
 	
 	<dependencies>
 

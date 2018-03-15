@@ -8,8 +8,8 @@
 	</parent>
 
 	<artifactId>spring-boot-sample-druid</artifactId>
-	<name>Spring Boot Druid Simple</name>
-	<description>Spring Boot Druid Simple</description>
+	<name>Spring Boot Druid Sample</name>
+	<description>Spring Boot Druid Sample</description>
 
 	<dependencies>
 
