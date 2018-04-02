@@ -1,0 +1,26 @@
+#日志级别
+logging: 
+  config: classpath:log4j2.xml
+
+###############################################################################################################  
+###Spring Boot 相关组件（SpringMVC、Freemarker、Session、Cache、DataSource）配置：  
+################################################################################################################
+spring: 
+  messages:
+    #指定message的basename，多个以逗号分隔，如果不加包名的话，默认从classpath路径开始，默认: messages
+    basename: i18n/messages
+    #设定Message bundles的编码，默认: UTF-8
+    encoding: UTF-8
+  
+  thymeleaf: 
+    prefix: classpath:/templates/
+
+  socketio: 
+    server:
+      hostname: localhost
+      enabled: true
+      port: 9098
+      socket-config:
+        reuse-address: true
+        tcp-no-delay: true
+        so-linger: 0

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出-->
+<!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数-->
+<Configuration status="WARN" monitorInterval="30">
+  
+	<Properties>
+		<!--
+		  	%m   输出代码中指定的消息
+		　　	%p   输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL 
+		　　	%r   输出自应用启动到输出该log信息耗费的毫秒数 
+		　　	%c   输出所属的类目，通常就是所在类的全名 
+		　　	%t   输出产生该日志事件的线程名 
+		　　	%n   输出一个回车换行符，Windows平台为“/r/n”，Unix平台为“/n” 
+		　　	%d   输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy MMM dd HH:mm:ss ,SSS}，输出类似：2002年10月18日  22 ： 10 ： 28 ， 921  
+		　　	%l   输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main(TestLog4.java: 10 ) 
+		-->
+		<!-- 日志输出格式:什么时间（日志时间）?什么应用（应用标记）?什么位置（线程、类、方法）?发送了什么（日志内容）? -->
+		<Property name="LOG_CONSOLE_LAYOUT">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{[SocketIO Demo]}{red} [%clr{%p} %clr{${sys:PID}}{magenta}] %clr{---}{faint} %clr{[%t]}{faint} %clr{[%C:%M:%L]}{cyan} %clr{:}{faint} %m%n%xwEx</Property>
+	</Properties>
+	
+	<Appenders>
+		<!-- 控制台日志输出配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LOG_CONSOLE_LAYOUT}" />
+		</Console>
+	</Appenders>
+	
+	<!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+	<Loggers>
+		
+		<!-- ###############同步日志配置############### -->
+		
+		<!-- 
+			#Log4j输出级别的种类
+			#ERROR、WARN、INFO、DEBUG
+			#ERROR 为严重错误 主要是程序的错误
+			#WARN 为一般警告，比如session丢失
+			#INFO 为一般要显示的信息，比如登录登出
+			#DEBUG 为程序的调试信息
+		 -->
+		<!-- 应用的日志级别 -->
+		<Logger name="org.springframework" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="org.apache.struts2" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="com.opensymphony.xwork2" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="org.mybatis" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+        <Logger name="org.apache.ibatis" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="org.apache.ibatis.jdbc.ScriptRunner" level="DEBUG" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="java.sql" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="java.sql.Connection" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+        <Logger name="java.sql.Statement" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />
+        </Logger>
+		<Logger name="java.sql.PreparedStatement" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+		<Logger name="java.sql.ResultSet" level="WARN" additivity="false">  
+            <AppenderRef ref="Console" />  
+        </Logger>
+        
+        <Root level="DEBUG" includeLocation="true">  
+            <AppenderRef ref="Console" /> 
+        </Root>
+
+	</Loggers>
+</Configuration>
