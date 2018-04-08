@@ -1,31 +1,37 @@
-# 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
-#   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
-#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
-
-server:
-  port: 8085
-management: 
-  port: 54002
-  health:
-    mail:
-      enabled: false
-info:
-  app:
-    name: "@project.name@" #从pom.xml中获取
-    description: "@project.description@"
-    version: "@project.version@"
-    spring-boot-version: "@project.parent.version@"
 
 spring: 
-  output:
+  output: 
     ansi:
       enabled: always
   messages:
     basename: /i18n/message
   profiles: 
     active: dev
-    
+  #MVC
+  mvc:
+    static-path-pattern: /**
+    view:
+      prefix: classpath:/templates/
+
 #日志级别
 logging: 
   config: classpath:log4j2.xml
-    
+
+swagger:
+  enabled: true
+  title: spring-boot-starter-swagger
+  base-package: io.swagger2.spring.boot
+  base-path:
+  - /**
+  description: Starter for swagger 2.x
+  exclude-path:
+  - /error 
+  - /ops/**
+  version: 1.1.0.RELEASE
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: https://github.com/dyc87112/spring-boot-starter-swagger
+  contact:
+    name : vindell
+    email: hnxyhcwdl1003@163.com
+    url  : https://github.com/vindell

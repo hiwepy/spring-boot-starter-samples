@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, vindell (https://github.com/vindell).
+ * Copyright (c) 2018, vindell (https://github.com/vindell).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,20 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package swagger2.spring.boot;
+package io.swagger2.spring.boot.dao;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+public class Result<T> {
 
-import io.swagger2.spring.boot.Swagger2Properties;
+	private T data;
 
-@SpringBootApplication
-@EnableConfigurationProperties({ Swagger2Properties.class })
-public class ReadApplication {
-	
-	public static void main(String[] args) {
-		SpringApplication.run(ReadApplication.class, args);
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
 	}
 	
 }

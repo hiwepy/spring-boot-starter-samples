@@ -9,9 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
+
 @Configuration 				// 配置控制
 @EnableScheduling
 @EnableAutoConfiguration 	// 启用自动配置
+@EnableSwagger2Doc
 @SpringBootApplication
 public class SwaggerApplication implements ApplicationRunner, CommandLineRunner {
 

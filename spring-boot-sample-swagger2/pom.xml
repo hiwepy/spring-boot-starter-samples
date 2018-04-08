@@ -11,12 +11,39 @@
 	<name>Spring Boot Swagger2 Sample</name>
 	<description>Spring Boot Swagger2 Sample</description>
 	
+	<properties>
+		<spring-boot-starter-swagger.version>1.7.0.RELEASE</spring-boot-starter-swagger.version>
+		<swagger.version>1.5.18</swagger.version>
+		<swagger-codegen.version>2.2.3</swagger-codegen.version>
+		<swagger-parser.version>1.0.34</swagger-parser.version>
+		<swagger-play.version >1.6.0</swagger-play.version >
+		<swagger-inflector.version>1.0.14</swagger-inflector.version>
+		<swagger-validator.version>1.0.5</swagger-validator.version>
+		<springfox.version>2.8.0</springfox.version>
+		
+		<swagger2markup.version>1.3.2</swagger2markup.version>
+        <swagger2markup.plugin.version>1.3.4</swagger2markup.plugin.version>
+		<swagger2markup.extension.version>1.3.1</swagger2markup.extension.version>
+		
+		<asciidoctorj.version>1.5.5</asciidoctorj.version>
+        <asciidoctorj.pdf.version>1.5.0-alpha.15</asciidoctorj.pdf.version>
+		<jruby.version>9.1.8.0</jruby.version>
+	
+		<swagger.input>http://localhost:8080/v2/api-docs</swagger.input>
+		<!-- <swagger.input>${project.basedir}/docs/swagger/swagger.json</swagger.input> -->
+        <!-- <swagger.input>${project.basedir}/src/docs/swagger/swagger_petstore.yaml</swagger.input> -->
+        <asciidoctor.input.directory>${generated.asciidoc.directory}</asciidoctor.input.directory>
+        <asciidoctor.html.output.directory>${project.build.directory}/asciidoc/html</asciidoctor.html.output.directory>
+		<asciidoctor.pdf.output.directory>${project.build.directory}/asciidoc/pdf</asciidoctor.pdf.output.directory>
+        <generated.asciidoc.directory>${project.build.directory}/asciidoc</generated.asciidoc.directory>
+		
+	</properties>
+	
 	<dependencies>
 
-		<!-- Compile -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -24,23 +51,157 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- For Thymeleaf View -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!-- Test -->
+		<!-- For Swagger -->
+		<dependency>
+		    <groupId>com.spring4all</groupId>
+		    <artifactId>swagger-spring-boot-starter</artifactId>
+		    <version>${spring-boot-starter-swagger.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.swagger2markup/swagger2markup -->
+		<dependency>
+		    <groupId>io.github.swagger2markup</groupId>
+		    <artifactId>swagger2markup</artifactId>
+		    <version>${swagger2markup.version}</version>
+		</dependency>
+		 
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-spring-web -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-spring-web</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-bean-validators -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-bean-validators</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-data-rest -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-data-rest</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-spi -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-spi</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-core -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-core</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-schema -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-schema</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-common -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-common</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/io.swagger -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-models</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency>
+		<!-- 以下可选 -->
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-parser</artifactId>
+		    <version>${swagger-parser.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-compat-spec-parser</artifactId>
+		    <version>${swagger-parser.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-validator</artifactId>
+		    <version>${swagger-validator.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-jaxrs</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency>
+		
+		<!-- <dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-jersey-jaxrs</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-jersey2-jaxrs</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency> 
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-inflector</artifactId>
+		    <version>${swagger-inflector.version}</version>
+		</dependency>
+		-->
+		
+		
+		
+		
+		
+		
+		<!-- For Log4j2 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		    <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
+		    <optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spring-boot-starter-swagger2</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -50,35 +211,141 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
-					<mainClass>com.github.vindell.boot.datay.DatayApplication</mainClass>
+					<mainClass>io.swagger2.spring.boot.SwaggerApplication</mainClass>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.7.RELEASE</version>
-					</dependency>
-				</dependencies>
 			</plugin>
-			<!-- 第一步：生成可执行的启动脚本 -->
+			<!-- 第一步：生成可执行的启动脚本
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>appassembler-maven-plugin</artifactId>
-			</plugin>
-			<!-- 第一步：通过antrun插件拷贝文件 -->
+			</plugin> -->
+			<!-- 第一步：通过antrun插件拷贝文件
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 			<!-- 第三步：通过docker-maven插件构造Docker镜像 <plugin> <groupId>com.spotify</groupId> 
 				<artifactId>docker-maven-plugin</artifactId> </plugin> -->
+			
+			
+			<!-- 
+				https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247484764&idx=1&sn=10e4fcae5333687368960a2e64b2b70c&chksm=9bd0a8c4aca721d264e40f5f543b9f557eedf033719a97a38257835c5162ffa010c025580a65&scene=21#wechat_redirect
+				https://github.com/tianqing2117/swagger-doc-demo/blob/master/pom.xml
+				https://github.com/Swagger2Markup/swagger2markup-maven-project-template/blob/master/pom.xml
+			 -->
+			<!-- First, use the swagger2markup plugin to generate asciidoc -->
+		    <plugin>
+		        <groupId>io.github.swagger2markup</groupId>
+		        <artifactId>swagger2markup-maven-plugin</artifactId>
+		        <version>${swagger2markup.plugin.version}</version>
+		        <dependencies>
+					<dependency>
+					    <groupId>io.github.swagger2markup</groupId>
+					    <artifactId>swagger2markup-import-schemas-ext</artifactId>
+					    <version>${swagger2markup.extension.version}</version>
+					</dependency>
+					<dependency>
+					    <groupId>io.github.swagger2markup</groupId>
+					    <artifactId>swagger2markup-import-files-ext</artifactId>
+					    <version>${swagger2markup.extension.version}</version>
+					</dependency>
+                    <dependency>
+					    <groupId>io.github.swagger2markup</groupId>
+					    <artifactId>swagger2markup-spring-restdocs-ext</artifactId>
+					    <version>${swagger2markup.extension.version}</version>
+					</dependency>
+				</dependencies>
+		        <configuration>
+		            <swaggerInput>${swagger.input}</swaggerInput>
+		            <outputDir>${generated.asciidoc.directory}</outputDir>
+		            <config>
+                        <swagger2markup.markupLanguage>ASCIIDOC</swagger2markup.markupLanguage>
+                        <swagger2markup.pathsGroupedBy>TAGS</swagger2markup.pathsGroupedBy>
+                        <swagger2markup.extensions.dynamicOverview.contentPath>${project.basedir}/src/docs/asciidoc/extensions/overview</swagger2markup.extensions.dynamicOverview.contentPath>
+                        <swagger2markup.extensions.dynamicDefinitions.contentPath>${project.basedir}/src/docs/asciidoc/extensions/definitions</swagger2markup.extensions.dynamicDefinitions.contentPath>
+                        <swagger2markup.extensions.dynamicPaths.contentPath>${project.basedir}/src/docs/asciidoc/extensions/paths</swagger2markup.extensions.dynamicPaths.contentPath>
+                        <swagger2markup.extensions.dynamicSecurity.contentPath>${project.basedir}src/docs/asciidoc/extensions/security</swagger2markup.extensions.dynamicSecurity.contentPath>
+						<swagger2markup.extensions.springRestDocs.snippetBaseUri>${swagger.snippetOutput.dir}</swagger2markup.extensions.springRestDocs.snippetBaseUri>
+						<swagger2markup.extensions.springRestDocs.defaultSnippets>true</swagger2markup.extensions.springRestDocs.defaultSnippets>
+					</config>
+		        </configuration>
+		        <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>convertSwagger2markup</goal>
+                        </goals>
+                    </execution>
+				</executions>
+		    </plugin>
+		    <!-- Run the generated asciidoc through Asciidoctor to generate
+                 other documentation types, such as PDFs or HTML5 -->
+	        <plugin>
+	        	<groupId>org.asciidoctor</groupId>
+	        	<artifactId>asciidoctor-maven-plugin</artifactId>
+	        	<version>1.5.6</version>
+	        	<!-- Include Asciidoctor PDF for pdf generation -->
+	        	<dependencies>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-pdf</artifactId>
+                        <version>${asciidoctorj.pdf.version}</version>
+                    </dependency>
+                    <!-- Comment this section to use the default jruby artifact provided by the plugin -->
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>${jruby.version}</version>
+                    </dependency>
+                    <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj</artifactId>
+                        <version>${asciidoctorj.version}</version>
+                    </dependency>
+				</dependencies>
+				<!-- Configure generic document generation settings -->
+          		<configuration>
+                    <sourceDirectory>${asciidoctor.input.directory}</sourceDirectory>
+                    <!-- <sourceDocumentName>index.adoc</sourceDocumentName> -->
+                    <attributes>
+                        <doctype>book</doctype>
+                        <toc>left</toc>
+                        <toclevels>3</toclevels>
+                        <numbered></numbered>
+                        <hardbreaks></hardbreaks>
+                        <sectlinks></sectlinks>
+                        <sectanchors></sectanchors>
+                        <generated>${generated.asciidoc.directory}</generated>
+                    </attributes>
+				</configuration>
+				<!-- Since each execution can only handle one backend, run
+                     separate executions for each desired output type -->
+          		<executions>
+                    <execution>
+                        <id>output-html</id>
+                        <phase>package</phase><!-- generate-resources -->
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html5</backend>
+                            <outputDirectory>${asciidoctor.html.output.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- <execution>
+                        <id>output-pdf</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <outputDirectory>${asciidoctor.pdf.output.directory}</outputDirectory>
+                        </configuration>
+                    </execution> -->
+				</executions>
+    		</plugin> 
 		</plugins>
 	</build>
 
