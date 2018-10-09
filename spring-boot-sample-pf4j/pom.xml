@@ -9,7 +9,11 @@
 	
 	<artifactId>spring-boot-sample-pf4j</artifactId>
 	<name>Spring Boot Pf4j Sample</name>
-	<description>Spring Boot Pf4j Sample</description>
+	<description>Spring Boot Pf4j 1.x Sample</description>
+	
+	<properties>
+		<spring-boot-starter-pf4j.version>1.0.3-SNAPSHOT</spring-boot-starter-pf4j.version>
+	</properties>
 	
 	<dependencies>
 
@@ -38,12 +42,20 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-pf4j</artifactId>
-			<version>${project.version}</version>
+			<version>${spring-boot-starter-pf4j.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.vindell</groupId>
+			<artifactId>pf4j-plugin-api</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/resources/pf4j-plugin-api-1.0.0-SNAPSHOT.jar</systemPath>
 		</dependency>
 
 	</dependencies>

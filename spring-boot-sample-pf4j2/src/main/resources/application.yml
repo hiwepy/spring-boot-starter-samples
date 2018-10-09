@@ -5,18 +5,11 @@
 pf4j: 
   enabled: true
   mode: deployment
-  plugins-dir: plugins
+  plugins-root: plugins
   
 server:
   port: 8085
   
-info:
-  app:
-    name: "@project.name@" #从pom.xml中获取
-    description: "@project.description@"
-    version: "@project.version@"
-    spring-boot-version: "@project.parent.version@"
-
 spring: 
   output:
     ansi:

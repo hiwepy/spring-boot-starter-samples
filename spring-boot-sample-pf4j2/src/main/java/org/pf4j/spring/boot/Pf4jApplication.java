@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.pf4j.PluginManager;
 import org.pf4j.PluginWrapper;
-import org.pf4j.RuntimeMode;
-import org.pf4j.spring.boot.ext.Pf4jJarPluginManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
@@ -22,34 +21,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class Pf4jApplication implements ApplicationRunner, CommandLineRunner {
 
+	@Autowired
+	private PluginManager pluginManager;
+	
 	public static void main(String[] args) throws Exception {
 
 		SpringApplication.run(Pf4jApplication.class, args);
 
 	}
-	
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-			
-		System.setProperty("pf4j.mode", RuntimeMode.DEPLOYMENT.toString());
 		
-//		if(RuntimeMode.DEPLOYMENT.compareTo(RuntimeMode.DEPLOYMENT) == 0) {
-//			System.setProperty("pf4j.pluginsDir", System.getProperty("app.home","e:/root") + "/plugins");
-//		} else {
-//			System.setProperty("pf4j.pluginsDir", "plugins");
-//		}
-		
-		// PluginManager pluginManager = new DefaultPluginManager();
-		// PluginManager pluginManager = new Pf4jPluginManager();
-		// PluginManager pluginManager = new SpringPluginManager();
-		PluginManager pluginManager = new Pf4jJarPluginManager();
-		// PluginManager pluginManager = new Pf4jJarPluginWhitSpringManager();
-		
-	    pluginManager.loadPlugins();
-
-	    pluginManager.startPlugins();
-	    
 	    List<PluginWrapper> list = pluginManager.getPlugins();
 	    for (PluginWrapper pluginWrapper : list) {
 			System.out.println(pluginWrapper.getPluginId());
