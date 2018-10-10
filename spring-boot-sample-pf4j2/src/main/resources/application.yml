@@ -2,23 +2,35 @@
 #   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
 #   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
 
-pf4j: 
-  enabled: true
-  mode: deployment
-  plugins-root: plugins
-  
 server:
   port: 8085
   
 spring: 
+
   output:
     ansi:
       enabled: always
-  messages:
-    basename: /i18n/message
+      
   profiles: 
     active: dev
-     
+    
+  # 国际化配置：
+  messages:
+    #指定message的basename，多个以逗号分隔，如果不加包名的话，默认从classpath路径开始，默认: messages
+    basename: i18n/messages
+    #设定Message bundles的编码，默认: UTF-8
+    encoding: UTF-8
+
+  # 视图配置：
+  mvc:
+    static-path-pattern: /**
+    view:
+      prefix: classpath:/templates/
+
+  pf4j:
+    enabled: true 
+    plugins-root: plugins
+    
 #日志级别
 logging: 
   config: classpath:log4j2.xml

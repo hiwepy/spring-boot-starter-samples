@@ -50,6 +50,14 @@
 			<artifactId>commons-logging</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.vindell</groupId>
+			<artifactId>pf4j2-plugin-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/resources/pf4j2-plugin-api-1.0.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
