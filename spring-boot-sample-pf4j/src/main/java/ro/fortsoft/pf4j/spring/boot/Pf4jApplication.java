@@ -5,15 +5,15 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration 				// 配置控制
 @EnableScheduling
-@EnableAutoConfiguration 	// 启用自动配置
+@EnableWebMvc
 @SpringBootApplication
 public class Pf4jApplication implements ApplicationRunner, CommandLineRunner {
 /*

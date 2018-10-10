@@ -12,7 +12,7 @@
 	<description>Spring Boot Pf4j 2.x Sample</description>
 	
 	<properties>
-		<spring-boot-starter-pf4j2.version>1.0.4-SNAPSHOT</spring-boot-starter-pf4j2.version>
+		<spring-boot-starter-pf4j2.version>1.0.4.RELEASE</spring-boot-starter-pf4j2.version>
 	</properties>
 	
 	<dependencies>
