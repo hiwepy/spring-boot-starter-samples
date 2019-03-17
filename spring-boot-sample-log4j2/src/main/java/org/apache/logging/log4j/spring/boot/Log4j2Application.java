@@ -27,15 +27,12 @@ public class Log4j2Application implements  ApplicationRunner, CommandLineRunner 
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-
-		Log4jUtils.debug(Markers.DB, "test1");
-		
+		Log4jUtils.instance("opt").debug(Markers.DB, "test1");
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		Log4jUtils.debug(Markers.DB, "test2");
-		 
+		Log4jUtils.instance("opt").debug(Markers.DB, "test2");
 	}
 
 

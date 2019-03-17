@@ -40,9 +40,9 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spring-boot-starter-druid</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.github.vindell</groupId>
+			<artifactId>spring-boot-starter-druid-plus</artifactId>
+			<version>1.0.7-SNAPSHOT</version>
 		</dependency>
 
 		<!-- For Oracle 11g -->

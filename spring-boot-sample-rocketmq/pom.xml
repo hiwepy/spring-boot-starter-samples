@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -6,11 +7,11 @@
 		<artifactId>spring-boot-starter-samples</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>spring-boot-sample-rocketmq</artifactId>
 	<name>Spring Boot Rocketmq Sample</name>
 	<description>Spring Boot Rocketmq Sample</description>
-	
+
 	<dependencies>
 
 		<!-- Compile -->
@@ -34,13 +35,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spring-boot-starter-rocketmq</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.github.vindell</groupId>
+			<artifactId>spring-boot-starter-rocketmq-plus</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>

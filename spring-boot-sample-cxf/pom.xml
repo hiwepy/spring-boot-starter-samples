@@ -39,9 +39,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spring-boot-starter-cxf</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.github.vindell</groupId>
+			<artifactId>spring-boot-starter-cxf-jaxws-plus</artifactId>
+			<version>1.0.3-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>

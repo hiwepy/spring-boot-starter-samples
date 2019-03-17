@@ -36,9 +36,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.github.vindell</groupId>
+			<artifactId>spring-boot-starter-log4j2-plus</artifactId>
+			<version>1.0.5-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>

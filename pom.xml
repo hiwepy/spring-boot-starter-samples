@@ -46,6 +46,7 @@
 		<module>spring-boot-sample-ehcache3</module>
 		<module>spring-boot-sample-flyway</module>
 		<module>spring-boot-sample-hikaricp</module>
+		<module>spring-boot-sample-jetbrick</module>
 		<module>spring-boot-sample-kaptcha</module>
 		<module>spring-boot-sample-log4j2</module>
 		<module>spring-boot-sample-pf4j</module>
