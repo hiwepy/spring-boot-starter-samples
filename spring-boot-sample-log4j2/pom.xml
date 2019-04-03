@@ -38,7 +38,6 @@
 		<dependency>
 			<groupId>com.github.vindell</groupId>
 			<artifactId>spring-boot-starter-log4j2-plus</artifactId>
-			<version>1.0.5-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>

@@ -41,7 +41,6 @@
 		<dependency>
 			<groupId>com.github.vindell</groupId>
 			<artifactId>spring-boot-starter-cxf-jaxws-plus</artifactId>
-			<version>1.0.3-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>

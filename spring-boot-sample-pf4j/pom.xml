@@ -40,9 +40,8 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.github.vindell</groupId>
 			<artifactId>spring-boot-starter-pf4j</artifactId>
-			<version>${spring-boot-starter-pf4j.version}</version>
 		</dependency>
 		 
 		<dependency>

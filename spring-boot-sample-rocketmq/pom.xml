@@ -39,7 +39,6 @@
 		<dependency>
 			<groupId>com.github.vindell</groupId>
 			<artifactId>spring-boot-starter-rocketmq-plus</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>

@@ -39,9 +39,8 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.github.vindell</groupId>
 			<artifactId>spring-boot-starter-casclient</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>

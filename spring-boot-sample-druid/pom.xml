@@ -42,7 +42,6 @@
 		<dependency>
 			<groupId>com.github.vindell</groupId>
 			<artifactId>spring-boot-starter-druid-plus</artifactId>
-			<version>1.0.7-SNAPSHOT</version>
 		</dependency>
 
 		<!-- For Oracle 11g -->
