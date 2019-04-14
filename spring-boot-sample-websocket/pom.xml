@@ -38,20 +38,18 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
-			<version>${project.version}</version>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.webjars.bower/stomp-websocket -->
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>stomp-websocket</artifactId>
-			<version>2.3.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars.bower/sockjs-client -->
 		<dependency>
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>sockjs-client</artifactId>
-		    <version>1.1.4</version>
 		</dependency>
 
 	</dependencies>

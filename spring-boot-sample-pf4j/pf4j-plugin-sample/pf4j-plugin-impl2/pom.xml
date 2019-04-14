@@ -8,8 +8,8 @@
   <artifactId>pf4j-plugin-impl2</artifactId>
   
   <properties>
-
-		<plugin.id>${project.artifactId}</plugin.id>
+		<!-- 因为要使用Maven作为插件的仓库，这里的ID就是Maven坐标 -->
+		<plugin.id>${project.groupId}:${project.artifactId}:${project.version}</plugin.id>
 		<plugin.description>认证插件实现2</plugin.description>
 		<plugin.class>pf4j.plugin.impl.AuthcPluginImpl2</plugin.class>
 		<plugin.version>${project.version}</plugin.version>
