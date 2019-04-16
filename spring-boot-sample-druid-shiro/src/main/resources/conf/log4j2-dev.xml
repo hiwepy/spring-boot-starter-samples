@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出-->
+<!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数-->
+<Configuration status="WARN" monitorInterval="30">
+  
+	<Properties>
+		<!--
+		  	%m   输出代码中指定的消息
+		　　	%p   输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL 
+		　　	%r   输出自应用启动到输出该log信息耗费的毫秒数 
+		　　	%c   输出所属的类目，通常就是所在类的全名 
+		　　	%t   输出产生该日志事件的线程名 
+		　　	%n   输出一个回车换行符，Windows平台为“/r/n”，Unix平台为“/n” 
+		　　	%d   输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy MMM dd HH:mm:ss ,SSS}，输出类似：2002年10月18日  22 ： 10 ： 28 ， 921  
+		　　	%l   输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main(TestLog4.java: 10 ) 
+		-->
+		<!-- 定义LOG存储位置 -->
+		<Property name="LOG_HOME">D:/Java/logs</Property>
+		<!-- 定义应用名称 -->
+        <property name="APP_NAME">jeebiz-admin</property>
+		<!-- 日志输出格式:什么时间（日志时间）?什么应用（应用标记）?什么位置（线程、类、方法）?发送了什么（日志内容）? -->
+		<Property name="LOG_CONSOLE_LAYOUT">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{[${APP_NAME}]}{red} %clr{%5p} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%xwEx</Property>
+		<Property name="LOG_CONSOLE_LAYOUT">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{[${APP_NAME}]}{red} [%clr{%p} %clr{${sys:PID}}{magenta}] %clr{---}{faint} %clr{[%t]}{faint} %clr{[%C:%M:%L]}{cyan} %clr{:}{faint} %m%n%xwEx</Property>
+		<Property name="LOG_FILE_LAYOUT">%d{yyyy-MM-dd HH:mm:ss.SSS} [${APP_NAME}] %p ${sys:PID} --- [%t] [%C:%M:%L] : %m%n%xwEx</Property>
+		<!-- 日志文件主名称规则 -->
+		<Property name="DEBUG_FILE_NAME">${LOG_HOME}/${APP_NAME}/debug.log</Property>
+		<Property name="INFO_FILE_NAME">${LOG_HOME}/${APP_NAME}/info.log</Property>
+		<Property name="WARN_FILE_NAME">${LOG_HOME}/${APP_NAME}/warn.log</Property>
+		<Property name="ERROR_FILE_NAME">${LOG_HOME}/${APP_NAME}/error.log</Property>
+		<Property name="DRUID_FILE_NAME">${LOG_HOME}/${APP_NAME}/druid-sql.log</Property>
+		<!-- 日志文件备份名称规则 -->
+		<Property name="LOG_FILE_PATTERN">${LOG_HOME}/${APP_NAME}/$${date:yyyy-MM}/${APP_NAME}-%d{yyyy-MM-dd}-%i.log.gz</Property>
+		<Property name="DEBUG_FILE_PATTERN">${LOG_HOME}/${APP_NAME}/$${date:yyyy-MM}/debug-%d{yyyy-MM-dd}-%i.log.gz</Property>
+		<Property name="INFO_FILE_PATTERN">${LOG_HOME}/${APP_NAME}/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log.gz</Property>
+		<Property name="WARN_FILE_PATTERN">${LOG_HOME}/${APP_NAME}/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log.gz</Property>
+		<Property name="ERROR_FILE_PATTERN">${LOG_HOME}/${APP_NAME}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz</Property>
+		<Property name="DRUID_FILE_PATTERN">${LOG_HOME}/${APP_NAME}/$${date:yyyy-MM}/druid-%d{yyyy-MM-dd}-%i.log.gz</Property>
+	</Properties>
+	
+	<!--先定义所有的appender-->
+	<Appenders>
+		
+		<!-- 控制台日志输出配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!--只接受程序中DEBUG级别的日志进行处理-->
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${LOG_CONSOLE_LAYOUT}" />
+			<!-- <PatternLayout pattern="[%d{HH:mm:ss.SSS}] %-5level %class{36} %L %M - %msg%xEx%n"/> -->
+		</Console>
+		
+		<!-- DEBUG级别日志文件输出配置 -->
+		<!-- 实时日志放到logs/debug.log文件中,按天或者超过size则自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+   		<RollingRandomAccessFile name="RollingFileDebug" fileName="${DEBUG_FILE_NAME}" filePattern="${DEBUG_FILE_PATTERN}">
+            <Filters>
+            	<!--只接受DEBUG级别的日志，其余的全部拒绝处理-->
+                <ThresholdFilter level="DEBUG"/>
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+            <!-- <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/> -->
+            <Policies>
+				<SizeBasedTriggeringPolicy size="50MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" /> <!-- 对应 filePattern维度，此处为天数 -->
+			</Policies>
+            <DefaultRolloverStrategy max="30" /> <!-- 日志自动删除，最大个数 -->
+        </RollingRandomAccessFile>
+        
+        <!-- INFO级别日志文件输出配置 -->
+		<!-- 实时日志放到logs/info.log文件中,按天或者超过size则自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+   		<RollingFile name="RollingFileInfo" fileName="${INFO_FILE_NAME}" filePattern="${INFO_FILE_PATTERN}">
+            <Filters>
+                <!--只接受INFO级别的日志，其余的全部拒绝处理-->
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+            <!-- <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/> -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+
+        <!-- WARN级别日志文件输出配置 -->
+		<!-- 实时日志放到logs/warn.log文件中,按天或者超过size则自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+   		<RollingFile name="RollingFileWarn" fileName="${WARN_FILE_NAME}" filePattern="${WARN_FILE_PATTERN}">
+            <Filters>
+            	<!--只接受WARN级别的日志，其余的全部拒绝处理-->
+                <ThresholdFilter level="WARN"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+            <!-- <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/> -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+ 		
+ 		<!-- ERROR级别日志文件输出配置 -->
+		<!-- 实时日志放到logs/error.log文件中,按天或者超过size则自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+   		<RollingFile name="RollingFileError" fileName="${ERROR_FILE_NAME}" filePattern="${ERROR_FILE_PATTERN}">
+            <Filters>
+            	<!--只接受"ERROR"级别的日志，其余的全部拒绝处理-->
+                <ThresholdFilter level="ERROR"/>
+            </Filters>
+            <PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+            <!-- <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %class{36} %L %M - %msg%xEx%n"/> -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+		
+        <!--Druid的日志记录追加器-->
+        <RollingFile name="RollingFileDruidSql" fileName="${DRUID_FILE_NAME}" filePattern="${DRUID_FILE_PATTERN}">
+            <PatternLayout pattern="${LOG_FILE_LAYOUT}" />
+            <!-- <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %-5level %L %M - %msg%xEx%n"/> -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+		
+	</Appenders>
+	
+	<!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+	<Loggers>
+		
+		<!-- ###############同步日志配置############### -->
+		
+		<!-- 
+			#Log4j输出级别的种类
+			#ERROR、WARN、INFO、DEBUG
+			#ERROR 为严重错误 主要是程序的错误
+			#WARN 为一般警告，比如session丢失
+			#INFO 为一般要显示的信息，比如登录登出
+			#DEBUG 为程序的调试信息
+		 -->
+        <Root level="DEBUG" includeLocation="true">  
+            <AppenderRef ref="Console" /> 
+            <AppenderRef ref="RollingFileDebug"/>
+            <AppenderRef ref="RollingFileInfo"/>
+            <AppenderRef ref="RollingFileWarn"/>
+            <AppenderRef ref="RollingFileError"/>
+        </Root>
+        
+        <!--记录druid-sql-->
+		<logger name="druid.sql.Statement" level="debug" additivity="false">
+            <AppenderRef ref="RollingFileDruidSql"/>
+        </logger>
+        
+        <!-- 框架、依赖组件日志过滤-->
+		<Logger name="com.mongodb" level="WARN" additivity="false"/>    
+		<Logger name="com.opensymphony.xwork2" level="WARN" additivity="false"/>
+		<Logger name="java.sql" level="DEBUG" additivity="false"/>  
+		<Logger name="java.sql.Connection" level="WARN" additivity="false"/>  
+        <Logger name="java.sql.Statement" level="WARN" additivity="false"/>  
+		<Logger name="java.sql.PreparedStatement" level="WARN" additivity="false"/>  
+		<Logger name="java.sql.ResultSet" level="WARN" additivity="false"/>  
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR" />
+        <Logger name="org.apache.catalina.util.LifecycleBase" level="ERROR" />
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN" />
+        <Logger name="org.apache.ibatis" level="DEBUG" additivity="false"/>  
+		<Logger name="org.apache.ibatis.jdbc.ScriptRunner" level="DEBUG" additivity="false"/>  
+		<Logger name="org.apache.rocketmq" level="WARN" additivity="false"/>  
+        <logger name="org.apache.sshd.common.util.SecurityUtils" level="WARN"/>
+		<Logger name="org.apache.struts2" level="WARN" additivity="false"/>  
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN" />
+        <Logger name="org.dozer" level="WARN" additivity="false"/>  
+        <Logger name="org.crsh.plugin" level="WARN" />
+        <logger name="org.crsh.ssh" level="WARN"/>
+        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="ERROR" />
+        <Logger name="org.flywaydb" level="WARN" additivity="false"/>  
+        <Logger name="org.hibernate.validator.internal.util.Version" level="WARN" />
+		<Logger name="org.mybatis" level="WARN" additivity="false"/>  
+		<Logger name="org.springframework" level="WARN" additivity="false"/>  
+        <Logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="WARN"/>
+        <Logger name="org.springframework.boot.actuate.endpoint.jmx" level="WARN"/>
+        <Logger name="org.thymeleaf" level="WARN"/>
+        <Logger name="RocketmqClient" level="WARN" additivity="false"/>  
+        <Logger name="springfox" level="WARN" additivity="false"/>  
+         
+        <!--log4j2 自带过滤日志-->
+        
+		<!-- 应用系统日志过滤 -->
+		<Logger name="net.jeebiz" level="DEBUG" additivity="false"/>
+        <Logger name="[Mybatis]net.jeebiz" level="DEBUG" additivity="false"/>  
+
+	</Loggers>
+</Configuration>

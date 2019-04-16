@@ -1,0 +1,253 @@
+################################################################################################################  
+###内置应用容器（Tomcat）配置：  
+################################################################################################################
+server:
+  port: 8084
+  servlet:
+    context-path: /
+    session:
+      timeout: 1800
+
+################################################################################################################  
+###接口文档（Swagger UI）配置：  
+################################################################################################################
+swagger:
+  enabled: true
+  title: Jeebiz Boot Demo
+  description: Jeebiz Boot Demo
+  version: 0.0.1-SNAPSHOT
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: 杭州极蚁网络科技有限公司
+    email: hiwepy@163.com
+    url: http://www.hiwepy.com/
+  base-package: net.jeebiz
+  base-path:
+  - /**
+  exclude-path:
+  - /error
+  - /ops/**
+
+################################################################################################################  
+###Shiro 权限控制基本配置：  
+################################################################################################################
+shiro:
+  annotations: 
+    enabled: true
+    proxy-target-class: true
+  cache:
+    type: ehcache
+  enabled: true
+  kaptcha:
+    enabled: true
+    retry-times-when-access-denied: 3
+  failure-url: /error
+  login-url: /authz/login/slogin
+  redirect-url: /authz/login/index
+  success-url: /index
+  unauthorized-url: /error
+  user-native-session-manager: true
+  session-creation-enabled: true
+  session-validation-scheduler-enabled: true
+  session-validation-interval: 20000
+  session-stateless: false
+  session-storage-enabled: true
+  session-timeout: 1800000
+  web: 
+    enabled: true
+  filter-chain-definition-map: 
+    '[/]' : anon
+    '[/**/favicon.ico]' : anon
+    '[/webjars/**]' : anon
+    '[/assets/**]' : anon
+    '[/error*]' : anon
+    '[/logo/**]' : anon
+    '[/swagger-ui.html**]' : anon
+    '[/swagger-resources/**]' : anon
+    '[/v2/**]' : anon
+    '[/kaptcha*]' : anon
+    '[/sockets/**]' : anon
+    '[/authz/login/slogin]' : authc
+    '[/logout]' : logout
+    '[/**]' : authc
+
+################################################################################################################  
+###Spring Boot 相关组件（SpringMVC、Freemarker、Session、Cache、DataSource）配置：  
+################################################################################################################
+spring: 
+  messages:
+    #指定message的basename，多个以逗号分隔，如果不加包名的话，默认从classpath路径开始，默认: messages
+    basename: i18n/*/messages,i18n/messages
+    #设定加载的资源文件缓存失效时间，-1的话为永不过期，默认为-1
+    #cache-seconds: 6000
+    #设定Message bundles的编码，默认: UTF-8
+    encoding: UTF-8
+    
+  profiles:
+    active: dev
+  
+  #MVC
+  mvc:
+    static-path-pattern: /**
+    view:
+      prefix: classpath:/templates/
+  resources:
+    static-locations:
+    - classpath:/templates/
+  #thymelea模板配置：https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+  
+  # 会话配置（交给Shiro管理，此处不再指定）：
+  session: 
+    store-type: none    
+    
+  # 缓存配置：
+  cache: 
+    type: ehcache
+    ehcache:
+      config: classpath:/conf/ehcache/ehcache.xml
+
+  # 数据源配置：
+  datasource:
+    name: jeebiz_demo
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.43.110.87:3306/jeebiz_demo?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    username: jeebiz_demo
+    password: ntzre47GiAJnL3AS
+    type: com.zaxxer.hikari.HikariDataSource
+    # HiKariCP的数据源配置：
+    hikari: 
+      enabled: true
+      allow-pool-suspension: true
+      auto-commit: false
+      # 连接初始化SQL
+      connection-init-sql: select SYSDATE()
+      # 连接测试语句
+      connection-test-query: select SYSDATE()
+      # 连接超时, 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
+      connection-timeout: 30000 
+      initialization-fail-timeout: 30000
+      #一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟  
+      idle-timeout: 600000  
+      # 内存泄漏侦测入口
+      leak-detection-threshold: 30000
+      # 一个连接的最大的生命时间（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      max-lifetime: 1800000
+      # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) 
+      max-pool-size: 15 
+      # 最小闲置线程
+      min-idle: 5
+      # 生效超时
+      validation-timeout: 30000
+      
+################################################################################################################  
+###Flyway (FlywayMigrationProperties) 数据库迁移脚本版本管理（实现软件版本升级数据库自动升级）配置：  
+################################################################################################################  
+  flyway: 
+    enabled: true
+    locations:
+    - classpath:db/migration/{vendor}
+    #指定SQL起始版本信息 
+    baseline-on-migrate: true
+    baseline-version: 1.0.0.0
+    baseline-description: 业务框架、权限管理、日志管理初始化
+    #如果已经有版本1和3，当发现新的版本2时，如果此参数为true,将会把版本2作为当前版本  
+    out-of-order: false
+    #在进行版本升级前是否进行SQL版本信息校验
+    validate-on-migrate: true
+    #设置如果验证失败是否删除表结构
+    clean-on-validation-error: true
+    #禁止对数据库进行相关清除操作
+    clean-disabled: true
+
+################################################################################################################  
+###mybatis-plus (MybatisPlusProperties) 基本配置：  
+###http://mp.baomidou.com/#/spring-boot
+################################################################################################################  
+mybatis-plus:
+  # 初始配置文件
+  check-config-location: true 
+  # config-location: classpath:/conf/mybatis/sqlMapConfig.xml
+  #configuration-properties:
+  # 初始配置参数
+  #configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId） 
+    #map-underscore-to-camel-case: true
+    #cache-enabled: false
+    #配置JdbcTypeForNull, oracle数据库必须配置
+    #jdbc-type-for-null: 'null'
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath*:net/jeebiz/**/dao/**/sqlmap/mysql/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: net.jeebiz.**.dao.entities
+  configuration:
+    # 指定MyBatis如何自动映射列到字段/属性。PARTIAL只会自动映射简单，没有嵌套的结果。
+    # FULL会自动映射任意复杂的结果（嵌套的或其他情况）;有效值：NONE,PARTIAL,FULL,默认值：PARTIAL
+    auto-mapping-behavior: partial
+    # 当检测出未知列（或未知属性）时，如何处理，    默认情况下没有任何提示，这在测试的时候很不方便，不容易找到错误 
+    auto-mapping-unknown-column-behavior: failing
+    # 当启用时，使用延迟加载属性的对象在发起任何延迟属性的调用时会被完全加载。否则，每个属性在请求时就加载。默认值：true
+    aggressive-lazy-loading: true
+    # 全局二级缓存开关：默认是true，如果它配成false，其余各个Mapper XML文件配成支持cache也没用
+    cache-enabled: true
+    call-setters-on-nulls: false
+    # database-id:  
+    # default-fetch-size: 
+    # 设置超时时间，它决定驱动等待一个数据库响应的时间。有效值：Any，positive，integer ；默认值：Not Set(null)
+    default-statement-timeout: 25
+    # 配置默认的执行器。SIMPLE 执行器没有什么特别之处。REUSE执行器重用预处理语句。BATCH 执行器重用语句和批量更新
+    # 有效值：SIMPLE,REUSE,BATCH;默认值：SIMPLE
+    default-executor-type: reuse
+    jdbc-type-for-null: null
+    map-underscore-to-camel-case: false
+    # 允许或不允许多种结果集从一个单独的语句中返回（需要适合的驱动）;有效值：true,false;默认值：true
+    multiple-result-sets-enabled: true
+    #use-actual-param-name:
+    # 使用列标签代替列名。不同的驱动在这方便表现不同。参考驱动文档或充分测试两种方法来决定所使用的驱动。有效值：true,false;默认值：true
+    use-column-label: true 
+    # 允许JDBC支持生成的键。需要适合的驱动。如果设置为true则这个设置强制生成的键被使用，尽管一些驱动拒绝兼容但仍然有效（比如 Derby）;有效值：true,false;默认值：false
+    use-generated-keys: false
+    safe-row-bounds-enabled: false
+    safe-result-handler-enabled: true
+    # 全局地禁用或启用延迟加载。禁用时，所有关联查询会被马上加载;默认值：true
+    lazy-loading-enabled: true
+    lazy-load-trigger-methods: 
+      equals
+      clone
+      hashCode
+      toString
+    local-cache-scope: session
+    log-prefix: "[Mybatis]"
+    #log-impl: org.apache.ibatis.logging.log4j2.Log4j2LoggerImpl.class
+    
+  global-config: 
+    sql-parser-cache: true
+    db-config:
+      id-type: auto
+      field-strategy: not-empty
+      #mp2.3+ 全局表前缀 mp_
+      #table-prefix: mp_
+      #刷新mapper 调试神器
+      #refresh-mapper: true
+      #数据库大写下划线转换
+      #capital-mode: true
+      # Sequence序列接口实现类配置
+      #key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+      #逻辑删除配置（下面3个配置）
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  
+################################################################################################################  
+###logging (log4j2) 基本配置：  
+###http://www.cnblogs.com/yhtboke/p/Mybatis.html
+################################################################################################################
+logging: 
+  config: classpath:conf/log4j2.xml
+  

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="ehcache"
+	updateCheck="false" monitoring="autodetect">
+	
+	<!-- Cache configuration.
+
+    The following attributes are required.
+
+    name:
+    Sets the name of the cache. This is used to identify the cache. It must be unique.
+
+    maxElementsInMemory:
+    Sets the maximum number of objects that will be created in memory (0 == no limit)
+
+	maxElementsOnDisk:
+    Sets the maximum number of objects that will be maintained in the DiskStore
+	The default value is zero, meaning unlimited.
+
+    eternal:
+    Sets whether elements are eternal. If eternal,  timeouts are ignored and the
+    element is never expired.
+
+    overflowToDisk:
+    Sets whether elements can overflow to disk when the in-memory cache
+    has reached the maxInMemory limit.
+
+    The following attributes are optional.
+
+    timeToIdleSeconds:
+    Sets the time to idle for an element before it expires.
+    i.e. The maximum amount of time between accesses before an element expires
+    Is only used if the element is not eternal.
+    Optional attribute. A value of 0 means that an Element can idle for infinity.
+    The default value is 0.
+
+    timeToLiveSeconds:
+    Sets the time to live for an element before it expires.
+    i.e. The maximum time between creation time and when an element expires.
+    Is only used if the element is not eternal.
+    Optional attribute. A value of 0 means that and Element can live for infinity.
+    The default value is 0.
+
+    diskPersistent:
+    Whether the disk store persists between restarts of the Virtual Machine.
+    The default value is false.
+
+    diskExpiryThreadIntervalSeconds:
+    The number of seconds between runs of the disk expiry thread. The default value
+    is 120 seconds.
+
+    diskSpoolBufferSizeMB:
+    This is the size to allocate the DiskStore for a spool buffer. Writes are made
+    to this area and then asynchronously written to disk. The default size is 30MB.
+    Each spool buffer is used only by its cache. If you get OutOfMemory errors consider
+    lowering this value. To improve DiskStore performance consider increasing it. Trace level
+    logging in the DiskStore will show if put back ups are occurring.
+
+    memoryStoreEvictionPolicy:
+    Policy would be enforced upon reaching the maxElementsInMemory limit. Default
+    policy is Least Recently Used (specified as LRU). Other policies available -
+    First In First Out (specified as FIFO) and Less Frequently Used
+    (specified as LFU)
+
+
+	diskStore ：指定数据存储位置，可指定磁盘中的文件夹位置
+	defaultCache ： 默认的管理策略
+	
+	以下属性是必须的：
+	name： Cache的名称，必须是唯一的(ehcache会把这个cache放到HashMap里)。
+	maxElementsInMemory： 在内存中缓存的element的最大数目。
+	maxElementsOnDisk： 在磁盘上缓存的element的最大数目，默认值为0，表示不限制。
+	eternal： 设定缓存的elements是否永远不过期。如果为true，则缓存的数据始终有效，如果为false那么还要根据timeToIdleSeconds，timeToLiveSeconds判断。
+	overflowToDisk： 如果内存中数据超过内存限制，是否要缓存到磁盘上。
+	
+	以下属性是可选的：
+	timeToIdleSeconds： 对象空闲时间，指对象在多长时间没有被访问就会失效。只对eternal为false的有效。默认值0，表示一直可以访问。
+	timeToLiveSeconds： 对象存活时间，指对象从创建到失效所需要的时间。只对eternal为false的有效。默认值0，表示一直可以访问。
+	diskPersistent： 是否在磁盘上持久化。指重启jvm后，数据是否有效。默认为false。
+	diskExpiryThreadIntervalSeconds： 对象检测线程运行时间间隔。标识对象状态的线程多长时间运行一次。
+	diskSpoolBufferSizeMB： DiskStore使用的磁盘大小，默认值30MB。每个cache使用各自的DiskStore。
+	memoryStoreEvictionPolicy： 如果内存中数据超过内存限制，向磁盘缓存时的策略。默认值LRU，可选FIFO、LFU。
+	
+	缓存的3 种清空策略 ：
+	FIFO ，first in first out (先进先出).
+	LFU ， Less Frequently Used (最少使用).意思是一直以来最少被使用的。缓存的元素有一个hit 属性，hit 值最小的将会被清出缓存。
+	LRU ，Least Recently Used(最近最少使用). (ehcache 默认值).缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。 
+
+    -->
+	<diskStore path="java.io.tmpdir" />
+	
+	<defaultCache 
+            eternal="true"
+            overflowToDisk="true"
+            maxElementsInMemory="1000000"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="3600"
+            memoryStoreEvictionPolicy="LRU" statistics="true">
+   	</defaultCache>	 
+
+	<cache name="SHIRO" 
+		   eternal="true"
+		   overflowToDisk="false"
+		   memoryStoreEvictionPolicy="LRU"
+		   maxElementsInMemory="1000000"
+           maxElementsOnDisk="10000000"
+		   diskPersistent="false" statistics="true">
+   	</cache>
+	
+	<cache name="SHIRO-CAPTCHA" 
+		   eternal="true"
+		   overflowToDisk="false"
+		   memoryStoreEvictionPolicy="LRU"
+		   maxElementsInMemory="1000000"
+           maxElementsOnDisk="10000000"
+		   diskPersistent="false" statistics="true">
+   	</cache>
+   	
+	<cache name="RESOURCES" 
+		   eternal="false"
+		   overflowToDisk="true"
+		   timeToIdleSeconds="3600"
+		   timeToLiveSeconds="3600"
+		   diskExpiryThreadIntervalSeconds="3600"
+		   memoryStoreEvictionPolicy="LRU"
+		   maxElementsInMemory="1000"
+           maxElementsOnDisk="10000000"
+		   diskPersistent="true" statistics="true">
+   	</cache>	 
+   	   
+</ehcache>

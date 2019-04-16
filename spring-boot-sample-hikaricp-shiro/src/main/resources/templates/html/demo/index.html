@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+
+</head>
+<body>
+
+<span shiro:authenticated="true" >
+      <span>欢迎您：<span th:text="${session.mySessionAttribute}"></span></span>
+</span>
+
+<br/>
+
+	/*
+ * ======================================================================
+ * See javadoc API for class org.thymeleaf.context.IContext
+ * ======================================================================
+ */
+
+${#ctx.locale}
+${#ctx.variableNames}
+
+/*
+ * ======================================================================
+ * See javadoc API for class org.thymeleaf.context.IWebContext
+ * ======================================================================
+ */
+
+${#ctx.request}
+${#ctx.response}
+${#ctx.session}
+${#ctx.servletContext}
+
+	<p th:text="${session.mySessionAttribute}" th:unless="${session == null}">[...]</p>
+	<table>
+		<tr>
+			<th align="center">My context attribute</th>
+			<!-- Retrieves the ServletContext attribute 'myContextAttribute' -->
+			<td th:text="${#servletContext.getAttribute('myContextAttribute')}">42</td>
+		</tr>
+		<tr>
+			<th >ServletContext attributes</th>
+		</tr>
+		<tr th:each="attr : ${#servletContext.getAttributeNames()}">
+			<td th:text="${attr}">javax.servlet.context.tempdir</td>
+			<td th:text="${#servletContext.getAttribute(attr)}">/tmp</td>
+		</tr>
+	</table>
+	<div id="page-content">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel text-left">
+					<!--浅色按钮组-->
+					<div class="panel-body demo-nifty-btn">
+						<!-- tool bar-start  -->
+						<div id="btn_db" class="btn-toolbar" role="toolbar"
+							style="float: right;">
+							<div class="layui-btn-group">
+								<button type="button" href="javascript:void(0);"
+									class="layui-btn layui-btn-primary layui-btn-sm" id="btn_zj">
+									新增
+								</button>
+								<button type="button" href="javascript:void(0);"
+									class="layui-btn layui-btn-primary layui-btn-sm" id="btn_xg">
+									 编辑
+								</button>
+								<button type="button" href="javascript:void(0);"
+									class="layui-btn layui-btn-primary layui-btn-sm" id="btn_sc">
+									 删除
+								</button>
+							</div>
+						</div>
+						<!-- tool bar-end  -->
+					</div>
+					<div class="panel-body ">
+						<form class="form-inline">
+							<div class="form-group col-xs-4 col-sm-4 col-md-3">
+								<label for="query-name" class="control-label">接口名称：</label> <input
+									id="query-name" type="text" class="form-control"
+									placeholder="请输入名称...">
+							</div>
+							<div id="db_btn_search"
+								class="layui-btn layui-btn-primary layui-btn-sm">查 询</div>
+						</form>
+					</div>
+					<div class="panel-body demo-nifty-btn">
+						<!-- table-start  -->
+						<table id="tabGrid"></table>
+						<!-- table-end  -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

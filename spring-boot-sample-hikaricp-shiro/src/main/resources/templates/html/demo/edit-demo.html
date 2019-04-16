@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <form id="ajaxForm" data-toggle="validation" method="post" data-widget='{"onkeyup": false}'  action="${request.contextPath}/simple/edit/form" theme="simple" class="form-horizontal ">
+    	<input type="hidden" id="id" name="id" value="${rtModel.id}"/>
+    	<div class="row">
+	        <div class="col-sm-12">
+	    		<div class="form-group">
+		            <label for="simple-name" class="col-sm-2 control-label">Demo名称</label>
+		            <div class="col-sm-10">
+		                <input placeholder="请输入Demo名称." class="form-control" id="simple-name" name="name" type="text" value="${rtModel.name}" data-rules='{"required":true}' />
+		            </div>
+		        </div>
+	        </div>
+	        <div class="col-sm-12">
+	    		<div class="form-group">
+		            <label for="simple-text" class="col-sm-2 control-label">Demo描述</label>
+		            <div class="col-sm-10">
+		            	<textarea placeholder="请输入Demo相关简述." class="form-control" id="simple-text" name="text" data-rules='{"required":true,"stringMaxLength":200}'
+		                cols="60" rows="2">${rtModel.text}</textarea>
+		            </div>
+		        </div>
+	        </div>
+        </div>
+    </form>
+</body>
+</html>

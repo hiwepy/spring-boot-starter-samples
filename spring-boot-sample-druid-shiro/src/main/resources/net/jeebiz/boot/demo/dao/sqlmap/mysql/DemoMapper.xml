@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.jeebiz.boot.demo.dao.IDemoDao" >
+
+	<resultMap id="DemoModelMap" type="DemoModel">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="text" column="TEXT" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="DemoModel">
+		insert into BIZ_SIMPLE(NAME,TEXT) values(#{name},#{text}) 
+	</insert>
+	
+	<delete id="delete"  parameterType="DemoModel">
+		delete from BIZ_SIMPLE t where t.id = #{id}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from BIZ_SIMPLE where id in
+		<foreach collection="list" item="ids"  open="(" separator="," close=")">
+		   #{ids}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="DemoModel">
+		update BIZ_SIMPLE 
+		<set>
+			<if test="name != null and name != ''">name = #{name},</if>
+			<if test="text != null and text != ''">text = #{text},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<select id="getDependencies" resultType="java.util.HashMap" parameterType="java.util.List">
+		SELECT distinct 
+		 	   t.ID,
+			   t.NAME
+		  FROM BIZ_SIMPLE t, Table2 x
+		 WHERE t.ID = x.SIMPLE_ID
+		   AND t.ID in
+			<foreach collection="list" item="ids"  open="(" separator="," close=")">
+			   #{ids}
+			</foreach>
+	</select>
+	
+	<select id="getModel" resultMap="DemoModelMap" parameterType="java.lang.String">
+		select ID,NAME,TEXT from BIZ_SIMPLE  t WHERE t.ID = #{id}
+	</select>
+	
+	<select id="getPagedList" resultMap="DemoModelMap" parameterType="DemoModel">
+		select ID,NAME,TEXT from BIZ_SIMPLE t
+		<where>
+			<if test="model.name != null and model.name != ''">t.name like CONCAT('%',#{model.name},'%')</if>
+		</where>
+	</select>
+	
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.jeebiz.boot.demo.dao.IAuthzLoginDao">
+
+	<resultMap id="LoginMap" type="AuthzLoginModel">
+		<result property="userid" column="U_ID" />
+		<result property="username" column="U_USERNAME" />
+		<result property="password" column="U_PASSWORD" />
+		<result property="salt" column="U_SALT" />
+		<result property="secret" column="U_SECRET" />
+		<result property="alias" column="U_ALIAS" />
+		<result property="phone" column="U_PHONE" />
+		<result property="email" column="U_EMAIL" />
+		<result property="status" column="U_STATUS" />
+		<result property="time24" column="U_TIME24" />
+	</resultMap>
+	
+	<sql id="AccountSQL">
+		select t.U_ID,
+		       t.U_USERNAME,       
+		       t.U_PHONE,
+		       t.U_ALIAS,
+		       t.U_EMAIL,
+		       t.U_SALT,
+			   t.U_SECRET,
+		       IFNULL(t.U_STATUS, '0') U_STATUS
+		  from SYS_AUTHZ_USER_LIST t
+		 where t.U_USERNAME = #{username}
+	</sql>
+	
+	<!-- 根据用户ID和密码查询用户信息  -->
+	<select id="getAccount" parameterType="string" resultMap="LoginMap">
+		<include refid="AccountSQL"/>
+		   and t.U_PASSWORD = #{password}
+    </select>
+    
+	<!-- 无密码根据用户ID用户信息  -->
+	<select id="getAccountWithoutPwd" parameterType="string" resultMap="LoginMap">
+	   	<include refid="AccountSQL"/>
+    </select> 
+    
+    <!-- 根据用户ID和密码查询用户可否登录，角色数量等信息  -->
+	<select id="getAccountStatus" parameterType="string" resultType="hashmap">
+	    select (select CAST(count('1') AS CHAR) from SYS_AUTHZ_USER_LIST a where a.U_USERNAME = #{username}) num_1,
+		       (select CAST(count('1') AS CHAR) from SYS_AUTHZ_USER_LIST b where b.U_USERNAME = #{username} and b.U_PASSWORD = #{password,jdbcType=VARCHAR} ) num_2,
+		       (select CAST(count('1') AS CHAR) from SYS_AUTHZ_USER_LIST c,SYS_AUTHZ_USER_ROLE_RELATION x where c.U_ID = x.U_ID and c.U_USERNAME = #{username}) num_3,
+		       IFNULL((select CAST(IFNULL(d.U_STATUS,'0') AS CHAR) from SYS_AUTHZ_USER_LIST d where d.U_USERNAME = #{username}),'0') num_4
+		from dual
+    </select> 
+    
+</mapper>

@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ -r "$BASEDIR/jre" ];
+then
+#Java environment
+export JAVA_HOME=$BASEDIR/jre
+export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$PATH
+echo "JAVA_HOME $JAVA_HOME"
+echo "CLASSPATH $CLASSPATH"
+else
+  echo "JAVA_HOME $JAVA_HOME"
+  echo "CLASSPATH $CLASSPATH"
+fi
