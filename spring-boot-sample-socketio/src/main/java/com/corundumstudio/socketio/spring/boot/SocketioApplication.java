@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.corundumstudio.socketio.SocketIONamespace;
 import com.corundumstudio.socketio.SocketIOServer;
 
 @Configuration 				// 配置控制
@@ -19,7 +20,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 public class SocketioApplication implements ApplicationRunner, CommandLineRunner {
 
 	@Autowired
-	private SocketIOServer server;
+	private SocketIOServer socketIOServer;
 	
 	public static void main(String[] args) throws Exception {
 
@@ -29,7 +30,9 @@ public class SocketioApplication implements ApplicationRunner, CommandLineRunner
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-
+		SocketIONamespace namespace = getSocketIOServer().getNamespace("test");
+		namespace.getAllClients();
+		namespace.getBroadcastOperations().sendEvent("xxx", "test");
 	}
 
 	@Override
@@ -46,6 +49,16 @@ public class SocketioApplication implements ApplicationRunner, CommandLineRunner
 		server.addPingListener(new SocketPingListener());*/
 		
 	}
+
+	public SocketIOServer getSocketIOServer() {
+		return socketIOServer;
+	}
+
+	public void setSocketIOServer(SocketIOServer socketIOServer) {
+		this.socketIOServer = socketIOServer;
+	}
+	
+	
 
 
 }
