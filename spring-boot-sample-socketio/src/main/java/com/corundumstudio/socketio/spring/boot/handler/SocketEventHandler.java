@@ -1,21 +1,28 @@
 package com.corundumstudio.socketio.spring.boot.handler;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
-@Component
-public class SocketEventHandler {
 
-	 //String：EventType类型
-    private Map<String,SocketIOClient> clients = new ConcurrentHashMap<String,SocketIOClient>();
+@Component
+public class SocketEventHandler extends AbstractSocketEventHandler {
+
+	@Autowired
+	private SocketIOServer socketIOServer;
  
+	@Override
+	public SocketIOServer getSocketIOServer() {
+		return socketIOServer;
+	}
+	
 	// 添加connect事件，当客户端发起连接时调用，本文中将clientid与sessionid存入数据库
 	// 方便后面发送消息时查找到对应的目标client,
 	@OnConnect
@@ -31,9 +38,9 @@ public class SocketEventHandler {
 		
 		System.out.printf("收到消息-from: %s to:%s\n", data.getFrom(), data.getTo());
 		
-		clients.put(data.getFrom(),client);
+		//clients.put(data.getFrom(),client);
 		 
-		SocketIOClient ioClient = clients.get(data.getTo());
+		SocketIOClient ioClient = getSocketIOServer().getNamespace("").getClient(UUID.fromString(data.getTo()));
         System.out.println("clientCache");
         if (ioClient == null) {
             System.out.println("你发送消息的用户不在线");
