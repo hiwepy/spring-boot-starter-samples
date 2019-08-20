@@ -12,6 +12,7 @@ body {
 #console {
     height: 400px;
     overflow: auto;
+    border: 1px solid #ccc;
 }
 .username-msg {
     color: orange;
@@ -40,8 +41,8 @@ body {
     </form>
 </body>
 <script type="text/javascript">
-	
-    var socket = io.connect('http://localhost:9098');
+
+    var socket = io.connect('http://192.168.2.222:10065');
     socket.on('connect',function() {
         output('<span class="connect-msg">Client has connected to the server!</span>');
     });

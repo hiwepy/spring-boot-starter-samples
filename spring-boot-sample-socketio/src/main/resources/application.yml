@@ -2,6 +2,8 @@
 logging: 
   config: classpath:log4j2.xml
 
+server:  tomcat:    accesslog:      enabled: true
+
 ###############################################################################################################  
 ###Spring Boot 相关组件（SpringMVC、Freemarker、Session、Cache、DataSource）配置：  
 ################################################################################################################
@@ -15,23 +17,29 @@ spring:
   thymeleaf: 
     prefix: classpath:/templates/
 
+################################################################################################################
+### SocketIO 配置：
+################################################################################################################                
   socketio:
     redis:
       redisson:
         enabled: true
         server: single
         single:
-          address: 127.0.0.1
+          address: redis://192.168.2.237:6379
+          password: redis
           client-name: redis
           connection-minimum-idle-size: 5
           connection-pool-size: 50
       template:
-        enabled: true 
+        enabled: false
            # 服务端配置
     server:
       enabled: true
+      ## 服务上下文地址，该地址与Nginx负载地址适配 /socket.io
+      context: /socket.io
       ## host在本地测试可以设置为localhost或者本机IP，在Linux服务器跑可换成服务器IP
-      hostname: localhost
+      hostname: 192.168.2.222
       ## netty启动端口
       port: 10065
       ## 添加头部版本信息
@@ -44,11 +52,11 @@ spring:
       max-frame-payload-length: 1048576
       ## 设置http交互最大内容长度
       max-http-content-length: 1048576
-      ## socket连接数大小（如只监听一个端口boss线程组为1即可）
-      boss-threads: 1
-      worker-threads: 100
+      transports:      - polling
+      - websocket
+      use-linux-native-epoll: false
       ## 协议升级超时时间（毫秒），默认10秒。HTTP握手升级为ws协议超时时间
-      upgrade-timeout: 15000
+      upgrade-timeout: 20000
       ## socket配置
       socket-config:
         reuse-address: true
@@ -58,3 +66,6 @@ spring:
       allow-custom-requests: true
       ## sessionID 通过请求头io来获取
       random-session: false
+      ## socket连接数大小（如只监听一个端口boss线程组为1即可）
+      boss-threads: 1
+      worker-threads: 100
