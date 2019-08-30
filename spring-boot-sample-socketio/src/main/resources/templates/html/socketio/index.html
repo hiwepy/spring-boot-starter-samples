@@ -1,32 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Socketio chat</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
-<style>
-body {
-    padding: 20px;
-}
-#console {
-    height: 400px;
-    overflow: auto;
-    border: 1px solid #ccc;
-}
-.username-msg {
-    color: orange;
-}
-.connect-msg {
-    color: green;
-}
-.disconnect-msg {
-    color: red;
-}
-.send-msg {
-    color: #888
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Socketio chat</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
 </head>
 <body>
     <h1>Netty-socketio chat demo</h1>
@@ -76,4 +54,26 @@ body {
         $('#console').prepend(element);
     }
 </script>
+<style>
+body {
+    padding: 20px;
+}
+#console {
+    height: 400px;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+.username-msg {
+    color: orange;
+}
+.connect-msg {
+    color: green;
+}
+.disconnect-msg {
+    color: red;
+}
+.send-msg {
+    color: #888
+}
+</style>
 </html>
