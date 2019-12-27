@@ -1,4 +1,4 @@
-package com.github.vindell.websocket;
+package com.github.hiwepy.websocket;
 
 import java.util.Date;
 import java.util.concurrent.Executors;

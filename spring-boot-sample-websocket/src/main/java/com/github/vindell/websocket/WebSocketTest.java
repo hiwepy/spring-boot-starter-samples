@@ -1,4 +1,4 @@
-package com.github.vindell.websocket;
+package com.github.hiwepy.websocket;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;

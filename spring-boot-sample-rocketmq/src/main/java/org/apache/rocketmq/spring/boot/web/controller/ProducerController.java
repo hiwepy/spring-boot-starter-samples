@@ -21,7 +21,7 @@ import java.util.List;
  * 
  * @className	： ProducerController
  * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
  * @date		： 2017年11月14日 上午8:55:08
  * @version 	V1.0
  */

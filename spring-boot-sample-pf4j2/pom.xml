@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.github.vindell</groupId>
+		<groupId>com.github.hiwepy</groupId>
 		<artifactId>spring-boot-starter-samples</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -40,7 +40,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-pf4j2</artifactId>
 		</dependency>
 
@@ -50,7 +50,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>pf4j2-plugin-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>system</scope>

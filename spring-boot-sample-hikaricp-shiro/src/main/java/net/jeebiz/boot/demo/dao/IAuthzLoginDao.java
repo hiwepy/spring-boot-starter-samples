@@ -11,7 +11,7 @@ import net.jeebiz.boot.demo.dao.entities.AuthzLoginModel;
 /**
  * 登录查询Dao
  * 
- * @author vindell
+ * @author hiwepy
  */
 @Mapper
 public interface IAuthzLoginDao extends BaseDao<AuthzLoginModel> {

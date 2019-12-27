@@ -1,4 +1,4 @@
-package com.github.vindell.websocket.handler;  
+package com.github.hiwepy.websocket.handler;  
   
 import org.springframework.web.socket.TextMessage;  
 import org.springframework.web.socket.WebSocketSession;  

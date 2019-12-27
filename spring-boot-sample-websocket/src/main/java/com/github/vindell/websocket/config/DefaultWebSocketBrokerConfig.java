@@ -1,4 +1,4 @@
-package com.github.vindell.websocket.config;
+package com.github.hiwepy.websocket.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

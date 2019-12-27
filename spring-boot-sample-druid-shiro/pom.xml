@@ -75,12 +75,12 @@
 		</dependency>
 		<!-- For Captcha -->
 		<dependency>
-			<groupId>com.github.vindell</groupId>
-			<artifactId>spring-boot-starter-kaptcha</artifactId>
+			<groupId>com.github.hiwepy</groupId>
+			<artifactId>kaptcha-spring-boot-starter</artifactId>
 		</dependency>
 		<!-- For Shiro -->
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-shiro-biz</artifactId>
 		</dependency>
 		<!-- For Swagger -->
@@ -108,7 +108,7 @@
 			</exclusions>
 		</dependency>
 		<!-- <dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-validation-mimetypes</artifactId>
 		</dependency> -->
 		<dependency>
@@ -117,7 +117,7 @@
 		</dependency>
 		<!-- For Dozer -->
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-dozer</artifactId>
 		</dependency>
 		<!-- <dependency>
@@ -160,7 +160,7 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-log4j2-plus</artifactId>
 		</dependency>
 		<!-- For Mybatis -->
@@ -176,7 +176,7 @@
 		</dependency>
 		<!-- For Flyway -->
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-flyway-plus</artifactId>
 		</dependency>
 		<!-- For Druid -->
@@ -185,7 +185,7 @@
 			<artifactId>druid-spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>spring-boot-starter-druid-plus</artifactId>
 		</dependency>
 		<!-- For Oracle 11g -->

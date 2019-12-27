@@ -59,11 +59,11 @@
 		 -->
 		
 		<!-- 应用的日志级别 -->
-		<logger name="com.github.vindell" level="DEBUG" additivity="false">  
+		<logger name="com.github.hiwepy" level="DEBUG" additivity="false">  
             <AppenderRef ref="Console" />  
             <AppenderRef ref="ROLLING_FILE_LOG"/>   
         </logger>
-        <logger name="[Mybatis]com.github.vindell" level="DEBUG" additivity="false">  
+        <logger name="[Mybatis]com.github.hiwepy" level="DEBUG" additivity="false">  
             <AppenderRef ref="Console" />  
             <AppenderRef ref="ROLLING_FILE_LOG"/>   
         </logger>
@@ -131,7 +131,7 @@
             <AppenderRef ref="Console" />  
             <AppenderRef ref="JMXTRANS_ROLLING_FILE_LOG"/>  
         </logger>
-        <logger name="com.github.vindell" level="DEBUG" additivity="false">  
+        <logger name="com.github.hiwepy" level="DEBUG" additivity="false">  
             <AppenderRef ref="Console" />  
         </logger>
         <logger name="org.apache.rocketmq" level="WARN" additivity="false">  
