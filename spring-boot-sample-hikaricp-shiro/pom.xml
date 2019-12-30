@@ -83,7 +83,7 @@
 		<!-- For Shiro -->
 		<dependency>
 			<groupId>com.github.hiwepy</groupId>
-			<artifactId>spring-boot-starter-shiro-biz</artifactId>
+			<artifactId>shiro-biz-spring-boot-starter</artifactId>
 		</dependency>
 		<!-- For Swagger -->
 		<dependency>
