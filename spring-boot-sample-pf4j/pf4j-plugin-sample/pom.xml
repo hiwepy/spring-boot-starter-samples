@@ -17,7 +17,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.12</junit.version>
-		<commons-io.version>2.5</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<fastjson.version>1.2.61</fastjson.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
