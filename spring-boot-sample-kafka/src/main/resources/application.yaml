@@ -1,0 +1,298 @@
+################################################################################################################
+###Spring Boot 监控（安全、开放信息等）配置：
+################################################################################################################
+management:
+  server:
+    # 启用独立运维端口
+    port: 50000
+  metrics:
+    tags:
+      # 在统计信息中添加自定义的标签
+      application: ${spring.application.name}
+  # 开启shutdown和health端点
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        # 指定上下文路径，启用相应端点
+        # 指定上下文路径，启用相应端点
+        base-path: /actuator
+        include: health,shutdown,metrics,prometheus
+
+################################################################################################################
+###内置应用容器（Tomcat、Jetty、Undertow）配置：
+################################################################################################################
+server:
+  compression:
+    enabled: true
+  # 默认为IMMEDIATE，表示立即关机；GRACEFUL表示优雅关机
+  shutdown: graceful
+  port: 8080
+  servlet:
+    session:
+      timeout: 60m
+  undertow:
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分，不要设置太大，以免影响其他应用，合适即可
+    buffer-size: 512
+    # 是否分配的直接内存(NIO直接分配的堆外内存)
+    direct-buffers: true
+    # 线程优化：
+    # 《Java Concurrency in Practice》一书中，给出了估算线程池大小的公式：
+    # Nthreads = Ncpu x Ucpu x (1 + W/C)
+    # 《Programming Concurrency on the JVM Mastering》一书中，给出了估算线程池大小的公式：
+    # Nthreads = Ncpu / (1 - 阻塞系数)
+    # 概念：
+    # Ncpu = CPU核心数
+    # Ucpu = CPU使用率，0~1
+    # W/C = 等待时间与计算时间的比率
+    # 实际：
+    # IO密集型 = 2Ncpu（可以测试后自己控制大小，2Ncpu一般没问题）（常出现于线程中：数据库数据交互、文件上传下载、网络数据传输等等）
+    # 计算密集型 = Ncpu（常出现于线程中：复杂算法）
+    threads:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      # 不要设置过大，如果过大，启动项目会报错：打开文件数过多
+      io: 2
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞IO操作, undertow会从这个线程池中取得线程
+      # 它的值设置取决于系统线程执行任务的阻塞系数，默认值是IO线程数*8
+      worker: 8
+  jetty:
+    threads:
+      acceptors: 2
+      selectors: 8
+  tomcat:
+    max-connections: 10000
+    threads:
+      max: 1024
+      min-spare: 64
+    accept-count: 65535
+
+################################################################################################################
+###Spring Boot 相关组件（SpringMVC、Freemarker、Session、Cache、DataSource）配置：
+################################################################################################################
+spring:
+  # 应用信息配置
+  application:
+    name: kafka-example
+  # 缓存配置：
+  cache:
+    type: none
+  # 数据源配置：
+  datasource:
+    # Druid的数据源配置：
+    druid:
+      enabled: true
+      #配置这个属性的意义在于，如果存在多个数据源，监控的时候可以通过名字来区分开来。如果没有配置，将会生成一个名字，格式是：”DataSource-” + System.identityHashCode(this)
+      #name: DataSource-Test
+      #这一项可配可不配，如果不配置druid会根据url自动识别dbType，然后选择相应的driverClassName
+      #driver-class-name: oracle.jdbc.driver.OracleDriver
+      #url:
+      #username: xxx
+      #password: xxx
+      #initialSize: 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时；默认 15
+      initial-size: 15
+      #连接池最大连接数量
+      max-active: 50
+      #获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁
+      max-wait: 60000
+      #连接池最小连接数量；默认 5
+      min-idle: 5
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒;有两个含义：1) Destroy线程会检测连接的间隔时间 2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明
+      time-between-eviction-runs-millis: 60000
+      #配置一个连接在池中最小生存的时间，单位：毫秒
+      min-evictable-idle-time-millis: 300000
+      #超过时间限制是否回收
+      remove-abandoned: true
+      #超过时间限制多长，单位：毫秒 ，180000毫秒=3分钟
+      remove-abandoned-timeout-millis: 180000
+      #用来检测连接是否有效的sql，要求是一个查询语句。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。
+      validation-query: SELECT 1
+      #申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。建议配置为true，不影响性能，并且保证安全性。
+      test-while-idle: true
+      #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+      #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql5.5以下的版本中没有PSCache功能，建议关闭掉。5.5及以上版本有PSCache，建议开启。
+      pool-prepared-statements: true
+      #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+      max-pool-prepared-statement-per-connection-size: 100
+      #Druid的监控统计功能:属性类型是字符串，通过别名的方式配置扩展插件
+      #filters: mergeStat,wall,slf4j
+      # 动态数据源
+      routable: true
+      # Druid监控配置
+      aop-patterns:
+      - io.hiwepy.boot.demo.web.mvc
+      stat-view-servlet:
+        enabled: true
+        reset-enable: false
+      web-stat-filter:
+        enabled: true
+        session-stat-enable: true
+        session-stat-max-count: 20000
+      # Druid自定义过滤器参数
+      filter:
+        # 配置日志输出
+        slf4j:
+          enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
+        # 配置安全防护
+        wall:
+          # 对被认为是攻击的SQL进行LOG.error输出
+          log-violation: true
+          # 对被认为是攻击的SQL抛出SQLExcepton
+          throw-exception: true
+          config:
+            # 是否允许语句中存在注释，Oracle的用户不用担心，Wall能够识别hints和注释的区别
+            comment-allow: true
+            # 是否允许非以上基本语句的其他语句，缺省关闭，通过这个选项就能够屏蔽DDL
+            none-base-statement-allow: true
+            # 是否允许一次执行多条语句，缺省关闭
+            multi-statement-allow: true
+            # 解除union关键字检查
+            select-union-check: false
+            # 是否允许执行锁定表操作
+            lock-table-allow: true
+    # HiKariCP的数据源配置：
+    hikari:
+      enabled: true
+      # 连接初始化SQL
+      connection-init-sql: SELECT 1
+      # 连接测试语句
+      connection-test-query: SELECT 1
+      # 连接超时, 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
+      connection-timeout: 30000
+      # 连接初始化的认定失败的超时时间（毫秒），缺省:30秒
+      initialization-fail-timeout: 30000
+      #一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟
+      idle-timeout: 600000
+      # 内存泄漏侦测入口
+      leak-detection-threshold: 30000
+      # 一个连接的最大的生命时间（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      max-lifetime: 1800000
+      # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+      max-pool-size: 15
+      # 最小闲置线程
+      min-idle: 5
+      # 生效超时
+      validation-timeout: 30000
+  # 国际化信息配置
+  messages:
+    #指定message的basename，多个以逗号分隔，如果不加包名的话，默认从classpath路径开始，默认: messages
+    basename: i18n/messages
+    #设定Message bundles的编码，默认: UTF-8
+    encoding: UTF-8
+  # Redis相关配置
+  redis:
+    # 基于Lettuce客户端的Redis连接池配置
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 200
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+    # 连接超时时间（毫秒）
+  # 会话配置
+  session:
+    store-type: none
+  web:
+    resources:
+      add-mappings: false
+  data:
+    redis:
+      timeout: 50000
+
+################################################################################################################
+###mybatis-plus (MybatisPlusProperties) 基本配置：
+###http://mp.baomidou.com/#/spring-boot
+################################################################################################################
+mybatis-plus:
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  # Oracle数据库对应的Mybatis脚本
+  #mapper-locations: classpath*:mapper/oracle/*.xml
+  # MySQL数据库对应的Mybatis脚本
+  mapper-locations: classpath*:mapper/mysql/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: xyz.mex.chain.coupon.entity
+  # 初始配置文件
+  check-config-location: true
+  # config-location: classpath:/conf/mybatis/sqlMapConfig.xml
+  # 初始配置参数 : https://my.oschina.net/tobeexpertismydream/blog/2983483
+  configuration:
+    # MyBatis 自动映射策略，通过该配置可指定 MyBatis 是否并且如何来自动映射数据表字段与对象的属性，总共有 3 种可选值：
+    # AutoMappingBehavior.NONE：不启用自动映射
+    # AutoMappingBehavior.PARTIAL：只对非嵌套的 resultMap 进行自动映射
+    # AutoMappingBehavior.FULL：对所有的 resultMap 都进行自动映射（任意复杂的结果，嵌套的或其他情况）
+    # 有效值：NONE,PARTIAL,FULL,默认值：PARTIAL
+    auto-mapping-behavior: partial
+    # MyBatis 自动映射时未知列或未知属性处理策略，通过该配置可指定 MyBatis 在自动映射过程中遇到未知列或者未知属性时如何处理，总共有 3 种可选值：
+    # 默认情况下没有任何提示，这在测试的时候很不方便，不容易找到错误
+    # AutoMappingUnknownColumnBehavior.NONE：不做任何处理 (默认值)
+    # AutoMappingUnknownColumnBehavior.WARNING：以日志的形式打印相关警告信息
+    # AutoMappingUnknownColumnBehavior.FAILING：当作映射失败处理，并抛出异常和详细信息
+    auto-mapping-unknown-column-behavior: none
+    # 当启用时，使用延迟加载属性的对象在发起任何延迟属性的调用时会被完全加载。
+    # 否则，每个属性都按需加载。需要和 lazyLoadingEnabled 一起使用。默认值：true
+    aggressive-lazy-loading: true
+    # 全局二级缓存开关：默认是true，如果它配成false，其余各个Mapper XML文件配成支持cache也没用
+    cache-enabled: true
+    # 指定当结果集中值为 null 的时候是否调用映射对象的 Setter（Map 对象时为 put）方法，通常运用于有 Map.keySet() 依赖或 null 值初始化的情况。
+    # 通俗的讲，即 MyBatis 在使用 resultMap 来映射查询结果中的列，如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段，这就导致在调用到该字段的时候由于没有映射，取不到而报空指针异常。
+    # 当您遇到类似的情况，请针对该属性进行相关配置以解决以上问题。
+    # 注意：基本类型（int、boolean 等）是不能设置成 null 的。
+    call-setters-on-nulls: false
+    # database-id:
+    # default-fetch-size:
+    # 设置超时时间，它决定驱动等待一个数据库响应的时间。有效值：Any，positive，integer ；默认值：Not Set(null)
+    default-statement-timeout: 60
+    # 配置默认的执行器。SIMPLE 执行器没有什么特别之处。REUSE执行器重用预处理语句。BATCH 执行器重用语句和批量更新
+    # 有效值：SIMPLE,REUSE,BATCH;默认值：SIMPLE
+    default-executor-type: reuse
+    jdbc-type-for-null: null
+    # 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射。
+    map-underscore-to-camel-case: false
+    # 允许或不允许多种结果集从一个单独的语句中返回（需要适合的驱动）;有效值：true,false;默认值：true
+    multiple-result-sets-enabled: true
+    #use-actual-param-name:
+    # 使用列标签代替列名。不同的驱动在这方便表现不同。参考驱动文档或充分测试两种方法来决定所使用的驱动。有效值：true,false;默认值：true
+    use-column-label: true
+    # 允许JDBC支持生成的键。需要适合的驱动。如果设置为true则这个设置强制生成的键被使用，尽管一些驱动拒绝兼容但仍然有效（比如 Derby）;有效值：true,false;默认值：false
+    use-generated-keys: true
+    log-prefix: "[Mybatis]"
+  global-config:
+    db-config:
+      id-type: auto
+      # field-strategy: not-empty
+      #mp2.3+ 全局表前缀 mp_
+      table-prefix: t_
+      #是否自动刷新 Mapper 对应的 XML 文件，默认不自动刷新。如果配置了该属性，Mapper 对应的 XML 文件会自动刷新，更改 XML 文件后，无需再次重启工程，由此节省大量时间。
+      #refresh-mapper: true
+      #是否开启数据库大写命名，默认不开启
+      #capital-mode: true
+      # Sequence序列接口实现类配置
+      #key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+      #逻辑删除配置（下面3个配置）
+      logic-delete-field: isDeleted  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+################################################################################################################
+###logging (log4j2) 基本配置：
+###http://www.cnblogs.com/yhtboke/p/Mybatis.html
+################################################################################################################
+logging:
+  config: classpath:conf/log4j2.xml

@@ -7,7 +7,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-sample-mybatis</artifactId>
+	<artifactId>spring-boot-sample-flyway</artifactId>
 	<name>Spring Boot Mybatis Sample</name>
 	<description>Spring Boot Mybatis Sample</description>
 	
