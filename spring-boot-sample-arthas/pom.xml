@@ -9,8 +9,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-sample-activemq</artifactId>
-	<description>Spring Boot ActiveMQ Sample</description>
+	<artifactId>spring-boot-sample-arthas</artifactId>
+	<description>Spring Boot Arthas Sample</description>
 	
 	<dependencies>
 
@@ -25,9 +25,10 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.taobao.arthas/arthas-spring-boot-starter -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
+			<groupId>com.taobao.arthas</groupId>
+			<artifactId>arthas-spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

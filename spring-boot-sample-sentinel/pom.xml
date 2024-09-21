@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-sample-activemq</artifactId>
-	<description>Spring Boot ActiveMQ Sample</description>
-	
+	<artifactId>spring-boot-sample-sentinel</artifactId>
+	<description>Spring Boot Sentinel Sample</description>
+
 	<dependencies>
 
 		<!-- Compile -->
@@ -25,9 +25,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba.csp/spring-boot-starter-ahas-sentinel-client -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>spring-boot-starter-ahas-sentinel-client</artifactId>
+			<version>1.11.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

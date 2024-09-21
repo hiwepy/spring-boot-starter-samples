@@ -31,6 +31,8 @@
 		<module>spring-boot-sample-log4j2</module>
 		<module>spring-boot-sample-pf4j</module>
 		<module>spring-boot-sample-rocketmq</module>
+		<module>spring-boot-sample-sentinel</module>
+		<module>spring-boot-sample-jooq</module>
 		<module>spring-boot-sample-swagger2</module>
 		<module>spring-boot-sample-websocket</module>
 		<module>spring-boot-sample-sharding-jdbc</module>

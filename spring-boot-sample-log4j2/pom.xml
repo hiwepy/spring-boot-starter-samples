@@ -34,10 +34,9 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
-			<groupId>com.github.hiwepy</groupId>
-			<artifactId>spring-boot-starter-log4j2-plus</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 		
 		<dependency>

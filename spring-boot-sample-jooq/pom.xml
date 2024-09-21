@@ -9,8 +9,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-sample-activemq</artifactId>
-	<description>Spring Boot ActiveMQ Sample</description>
+	<artifactId>spring-boot-sample-jooq</artifactId>
+	<description>Spring Boot Jooq Sample</description>
 	
 	<dependencies>
 
@@ -25,9 +25,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jooq -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
+			<artifactId>spring-boot-starter-jooq</artifactId>
+			<version>3.3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

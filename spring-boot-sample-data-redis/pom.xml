@@ -9,8 +9,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>spring-boot-sample-activemq</artifactId>
-	<description>Spring Boot ActiveMQ Sample</description>
+	<artifactId>spring-boot-sample-webflux</artifactId>
+	<description>Spring Boot WebFlux Sample</description>
 	
 	<dependencies>
 
@@ -27,7 +27,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
