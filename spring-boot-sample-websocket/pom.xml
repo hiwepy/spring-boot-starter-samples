@@ -61,7 +61,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
-					<mainClass>com.github.hiwepy.boot.datay.DatayApplication</mainClass>
+					<mainClass>io.github.hiwepy.boot.datay.DatayApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>

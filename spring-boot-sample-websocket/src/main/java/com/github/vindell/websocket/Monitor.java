@@ -1,4 +1,4 @@
-package com.github.hiwepy.websocket;
+package io.github.hiwepy.websocket;
 
 import java.util.Date;
 import java.util.concurrent.Executors;

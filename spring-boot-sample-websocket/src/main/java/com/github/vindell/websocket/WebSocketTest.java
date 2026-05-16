@@ -1,4 +1,4 @@
-package com.github.hiwepy.websocket;
+package io.github.hiwepy.websocket;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;

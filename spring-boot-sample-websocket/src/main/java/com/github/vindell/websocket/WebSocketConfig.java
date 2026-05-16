@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.hiwepy.websocket;
+package io.github.hiwepy.websocket;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
-import com.github.hiwepy.websocket.handler.ChatWebSocketHandler;
+import io.github.hiwepy.websocket.handler.ChatWebSocketHandler;
 
 @Configuration
 @EnableWebMvc
